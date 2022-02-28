@@ -1,5 +1,6 @@
 package com.group1.javaproject.players;
 
+import com.group1.javaproject.UnoGame.UnoGame;
 import com.group1.javaproject.deck.UnoCard;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public interface Player {
         UnoCard topCard = UnoGame.topCard;
 
         //If the card is a wild card, or has the same number or color as the top card, it is a valid card
-        if(card.getColor() == "Wild"  || card.getColor() == topCard.getColor() || card.getNumer() == topCard.getNumber()){
+        if(card.getColor() == "Wild"  || card.getColor() == topCard.getColor() || card.getNumber() == topCard.getNumber()){
             return true;
         }
 

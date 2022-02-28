@@ -1,6 +1,6 @@
 package com.group1.javaproject.deck;
 
-class UnoCard {
+public class UnoCard {
 
     // properties
     String number;
@@ -25,4 +25,3 @@ class UnoCard {
     }
     // toString
 }
-

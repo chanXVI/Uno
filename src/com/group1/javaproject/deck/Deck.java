@@ -11,10 +11,10 @@ class Deck {
     // methods
     public Collection<UnoCard> dealCards(){
         Collection<UnoCard> startingHand = new ArrayList<>();
-        for(int cardsDealt = 0; cardsDealt < 10; cardsDealt++){
-            int index = (int)(Math.random() * deck.size());
-            startingHand.add(deck.get(index));
-        }
+            for(int cardsDealt = 0; cardsDealt < 10; cardsDealt++){
+                int index = (int)(Math.random() * deck.size());
+                startingHand.add(deck.get(index));
+            }
         return startingHand;
     }
 

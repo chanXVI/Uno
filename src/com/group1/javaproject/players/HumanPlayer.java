@@ -60,6 +60,7 @@ public class HumanPlayer implements Player{
     public void reverse() {
 
     }
+
     @Override
     public void skip() {
 

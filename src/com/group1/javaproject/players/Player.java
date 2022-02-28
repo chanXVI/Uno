@@ -16,20 +16,45 @@ public interface Player {
 
     List<UnoCard> playerHand = new ArrayList<>();
 
+    /**
+     * Draw a card from the deck and add it to a player hand
+     */
     void draw();
 
+    /**
+     * Play a card based on what the top card currently is.
+     * @return a valid card to be returned to the game
+     */
     UnoCard playCard();
 
+    /**
+     * If a player only has one card, they should yell UNO! or recieve a penalty
+     */
     void sayUno();
 
+    /**
+     * Reverse the order of turns
+     */
     void reverse();
 
+    /**
+     * Skip the next player
+     */
     void skip();
 
+    /**
+     * The total amount of cards a player has in their hand
+     * @return the size of their hand
+     */
     default int checkCardCount(){
         return playerHand.size();
     }
 
+    /**
+     * Checks to see if the provided card is playable, based on the last card played
+     * @param card the card to be checked for validity
+     * @return true if card is valid, false if card can not be played
+     */
     default boolean isCardValid(UnoCard card){
         //A more readable variable name
         UnoCard topCard = UnoGame.topCard;

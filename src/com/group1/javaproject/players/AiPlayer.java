@@ -18,6 +18,10 @@ public class AiPlayer implements Player{
     private String name;
     private boolean isHuman = false;
 
+    /**
+     * Builds a new AI Player. Initial hand is dealt in creation
+     * @param name the name of the AI player!
+     */
     public AiPlayer(String name){
         this.name = name;
         playerHand.addAll(Deck.dealCards());

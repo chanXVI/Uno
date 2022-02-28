@@ -3,11 +3,12 @@ package com.group1.javaproject.players;
 import com.group1.javaproject.deck.Deck;
 import com.group1.javaproject.deck.UnoCard;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * An "AI" controlled player for the UnoGame class. Behaves similarly to <code>HumanPlayer</code>
+ * An "AI" controlled player for the UnoGame class. Behaves similarly to <code>HumanPlayer</code>,
  * with the addition of playing random cards from their deck, instead of playing one based on user input
  *
  * @see HumanPlayer
@@ -27,7 +28,8 @@ public class AiPlayer implements Player{
      */
     @Override
     public void draw() {
-        playerHand.add(Deck.drawCard());
+        //Collection will only contain 1 card, so addAll will only add one card
+        playerHand.addAll(Deck.drawCards(1));
     }
 
     /**
@@ -39,7 +41,7 @@ public class AiPlayer implements Player{
     public UnoCard playCard() {
         //Gather a list of valid cards from the current hand
         List<UnoCard> validCards = playerHand.stream().filter(card -> isCardValid(card)).collect(Collectors.toList());
-
+        System.out.println("valid cards: " + validCards);
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
             draw();
@@ -48,8 +50,14 @@ public class AiPlayer implements Player{
             return null;
         }
 
+        //create new reference for the card for readability
+        UnoCard card = validCards.get(0);
+
+        //card is removed once used
+        playerHand.remove(card);
+
         //Returning the first index for now, for testing purposes
-        return validCards.get(0);
+        return card;
     }
 
     /**
@@ -79,4 +87,6 @@ public class AiPlayer implements Player{
     public void skip() {
 
     }
+
+
 }

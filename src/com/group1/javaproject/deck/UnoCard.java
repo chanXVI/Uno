@@ -6,7 +6,7 @@ public class UnoCard {
     String number;
     String color;
     // constructors
-    UnoCard(String number, String color){
+    public UnoCard(String number, String color){
         setNumber(number);
         setColor(color);
     }
@@ -24,4 +24,8 @@ public class UnoCard {
         this.color = color;
     }
     // toString
+    @Override
+    public String toString(){
+        return "Uno Card: "+getColor() + " " + getNumber();
+    }
 }

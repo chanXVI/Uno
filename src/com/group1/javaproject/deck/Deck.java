@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-class Deck {
+public class Deck {
     // properties
     private static ArrayList<UnoCard> deck = new ArrayList<>();
     // constructors
     // methods
-    public Collection<UnoCard> dealCards(){
+    public static Collection<UnoCard> dealCards(){
         Collection<UnoCard> startingHand = new ArrayList<>();
             for(int cardsDealt = 0; cardsDealt < 10; cardsDealt++){
                 int index = (int)(Math.random() * deck.size());
@@ -18,7 +18,7 @@ class Deck {
         return startingHand;
     }
 
-    public Collection<UnoCard> drawCards(int cardsToDraw){
+    public static Collection<UnoCard> drawCards(int cardsToDraw){
         Collection<UnoCard> addToHand = new ArrayList<>();
         for(int cardDrawn = 0; cardDrawn < cardsToDraw; cardDrawn++){
             int index = (int)(Math.random() * deck.size());
@@ -74,12 +74,5 @@ class Deck {
         deck.add(new UnoCard("wild+4", "wild"));
         deck.add(new UnoCard("wild+4", "wild"));
         deck.add(new UnoCard("wild+4", "wild"));
-
-
-
-
-
-
-
     }
 }

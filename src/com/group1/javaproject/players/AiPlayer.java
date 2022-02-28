@@ -27,7 +27,7 @@ public class AiPlayer implements Player{
      */
     @Override
     public void draw() {
-        playerHand.add(Deck.drawCard());
+        //playerHand.add(Deck.drawCard());
     }
 
     /**

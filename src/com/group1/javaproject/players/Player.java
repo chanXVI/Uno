@@ -51,7 +51,8 @@ public interface Player {
     default void setHand(List<UnoCard> cards){
         //playerHand is final, can not use = to change contents to that of another collection
         //must first remove each UnoCard from playerHand, then add each new card to the List
-        for(int i = 0; i < playerHand.size(); i++){
+        int size = playerHand.size();
+        for(int i = 0; i < size; i++){
             playerHand.remove(0);
         }
         playerHand.addAll(cards);

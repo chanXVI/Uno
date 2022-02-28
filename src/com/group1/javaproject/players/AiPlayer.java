@@ -41,7 +41,7 @@ public class AiPlayer implements Player{
     public UnoCard playCard() {
         //Gather a list of valid cards from the current hand
         List<UnoCard> validCards = playerHand.stream().filter(card -> isCardValid(card)).collect(Collectors.toList());
-        System.out.println("valid cards: " + validCards);
+
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
             draw();
@@ -55,6 +55,10 @@ public class AiPlayer implements Player{
 
         //card is removed once used
         playerHand.remove(card);
+
+        if(playerHand.size() == 1){
+            sayUno();
+        }
 
         //Returning the first index for now, for testing purposes
         return card;

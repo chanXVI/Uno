@@ -1,6 +1,7 @@
 package com.group1.javaproject.players;
 
 import com.group1.javaproject.UnoGame.UnoGame;
+import com.group1.javaproject.deck.Deck;
 import com.group1.javaproject.deck.UnoCard;
 
 import java.io.IOException;

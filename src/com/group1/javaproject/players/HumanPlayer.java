@@ -31,11 +31,11 @@ public class HumanPlayer implements Player{
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
         System.out.println("What card do you want to play?");
-        String card = reader.readLine();
+        String card = reader.readLine(); //enter place in arraylist to get element
         System.out.println("You picked:");
-        System.out.println(card);
-        int x = Integer.parseInt(card);
-        System.out.println(playerHand.get(x));
+        int x = Integer.parseInt(card); //entered number will be changed to int
+        System.out.println(playerHand.get(x)); //int x used to get UnoCard from "index x" of playerHand
+        playerHand.remove(x); //remove from hand
 
         return playerHand.get(x);
     }

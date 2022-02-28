@@ -1,7 +1,10 @@
 package com.group1.javaproject.players;
 
 import com.group1.javaproject.UnoGame.UnoGame;
+import com.group1.javaproject.deck.Deck;
 import com.group1.javaproject.deck.UnoCard;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public interface Player {
      * @return a valid card to be returned to the game
      */
     UnoCard playCard();
+    UnoCard playCard() throws IOException;
 
     /**
      * If a player only has one card, they should yell UNO! or recieve a penalty

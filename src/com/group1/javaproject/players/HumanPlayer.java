@@ -3,8 +3,11 @@ package com.group1.javaproject.players;
 import com.group1.javaproject.deck.Deck;
 import com.group1.javaproject.deck.UnoCard;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class HumanPlayer implements Player{
 
@@ -21,29 +24,20 @@ public class HumanPlayer implements Player{
         playerHand.addAll(Deck.drawCards(1));
     }
 
-    /**
-     * Ask which card should be played, until a valid card is chosen
-     * @return the card the player chose
-     */
     @Override
-    public UnoCard playCard() {
-        Scanner cardChoice = new Scanner(System.in);
-        boolean validPresent = false;
-        int choice;
-        for(int i = 0; i < playerHand.size(); i++){
-            System.out.println((i+1) + ": " + playerHand.get(i));
-            if(isCardValid(playerHand.get(i))){
-                validPresent = true;
-            }
-        }
-        do{
-            System.out.println("Enter a number for which card you would like to play");
-            choice = cardChoice.nextInt();
+    public UnoCard playCard() throws IOException {
+        System.out.println(playerHand);
 
-        }while(choice > playerHand.size() || isCardValid(playerHand.get(choice)));
+        InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input);
+        System.out.println("What card do you want to play?");
+        String card = reader.readLine(); //enter place in arraylist to get element
+        System.out.println("You picked:");
+        int x = Integer.parseInt(card); //entered number will be changed to int
+        System.out.println(playerHand.get(x)); //int x used to get UnoCard from "index x" of playerHand
+        playerHand.remove(x); //remove from hand
 
-
-        return playerHand.get(choice);
+        return playerHand.get(x);
     }
 
     //yell uno when hand = 1
@@ -56,13 +50,33 @@ public class HumanPlayer implements Player{
         }
     }
 
+    //HOLD
     @Override
     public void reverse() {
 
     }
 
+    //HOLD
     @Override
     public void skip() {
 
+    }
+
+    @Override
+    public int checkCardCount() {
+        return Player.super.checkCardCount();
+    }
+
+    @Override
+    public boolean isCardValid(UnoCard card) {
+        return Player.super.isCardValid(card);
+    }
+
+    @Override
+    public String toString() {
+        return "HumanPlayer{" +
+                "name='" + name + '\'' +
+                ", isHuman=" + isHuman +
+                '}';
     }
 }

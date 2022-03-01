@@ -22,7 +22,7 @@ import java.util.Scanner;
 public class UnoGame {
     // properties
     ArrayList<Player> players = new ArrayList<>();
-    public static UnoCard topCard = new UnoCard("4", "green");
+    public static UnoCard topCard;
     private int startingHand;
     private int numberOfPlayers;
     private int numberOfHumanPlayers;

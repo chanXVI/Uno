@@ -3,7 +3,6 @@ package com.group1.javaproject.players;
 import com.group1.javaproject.deck.Deck;
 import com.group1.javaproject.deck.UnoCard;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,15 +11,17 @@ import java.util.stream.Collectors;
  * with the addition of playing random cards from their deck, instead of playing one based on user input
  *
  * @see HumanPlayer
+ * @see UnoCard
+ * @see Player
  * @author Julian Simmerman
  */
 public class AiPlayer implements Player{
-    private String name;
-    private boolean isHuman = false;
+    private final String name;
+    private final boolean isHuman = false;
 
     /**
      * Builds a new AI Player. Initial hand is dealt in creation
-     * @param name the name of the AI player!
+     * @param name Name of the AI player!
      */
     public AiPlayer(String name){
         this.name = name;
@@ -29,6 +30,7 @@ public class AiPlayer implements Player{
 
     /**
      * Draw a card from the deck to add to the current hand
+     * @param amount Amount of cards to be added to the AI hand
      */
     @Override
     public void draw(int amount) {
@@ -60,11 +62,11 @@ public class AiPlayer implements Player{
         //card is removed once used
         playerHand.remove(card);
 
+        //if the Ai has one card left, they automatically say uno
         if(playerHand.size() == 1){
             sayUno();
         }
 
-        //Returning the first index
         return card;
     }
 
@@ -95,5 +97,16 @@ public class AiPlayer implements Player{
 
     }
 
+    /**
+     * The information on this player in a String format
+     *
+     * @return The printable version of the AI Player
+     */
+    @Override
+    public String toString(){
+        return "Ai Player:" +
+                "name="+name+
+                " number of cards="+checkCardCount();
+    }
 
 }

@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @see HumanPlayer
  * @see AiPlayer
+ * @see UnoCard
  * @author Team Uno
  */
 public interface Player {
@@ -28,11 +29,10 @@ public interface Player {
      * Play a card based on what the top card currently is.
      * @return a valid card to be returned to the game
      */
-
     UnoCard playCard() throws IOException;
 
     /**
-     * If a player only has one card, they should yell UNO! or recieve a penalty
+     * If a player only has one card, they should yell UNO! or receive a penalty
      */
     void sayUno();
 

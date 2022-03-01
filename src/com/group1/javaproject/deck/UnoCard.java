@@ -1,5 +1,12 @@
 package com.group1.javaproject.deck;
 
+/**
+ * The focus of the UnoGame class. Each card has a number and a color
+ *
+ * @see com.group1.javaproject.players.Player
+ * @see com.group1.javaproject.UnoGame.UnoGame
+ * @see Deck
+ */
 public class UnoCard {
 
     // properties

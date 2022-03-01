@@ -67,4 +67,10 @@ public interface Player {
         //return false if card is not valid
         return false;
     }
+
+    /**
+     * Method created for testing purposes. Will set the current hand of this player to a new, provided hand
+     * @param cards The cards to replace the current hand
+     */
+    void setHand(List<UnoCard> cards);
 }

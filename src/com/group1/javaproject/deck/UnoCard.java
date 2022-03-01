@@ -18,15 +18,31 @@ public class UnoCard {
         setColor(color);
     }
     // methods
+
+    /**
+     * @return the number on this card as a String
+     */
     public String getNumber() {
         return number;
     }
+
+    /**
+     * Change the number on this card
+     * @param number the number that will update this card
+     */
     public void setNumber(String number) {
         this.number = number;
     }
+    /**
+     * @return the color of this card as a String
+     */
     public String getColor() {
         return color;
     }
+    /**
+     * Change the color of this card
+     * @param color the color that will update this card
+     */
     public void setColor(String color) {
         this.color = color;
     }

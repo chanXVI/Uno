@@ -22,9 +22,9 @@ public class Deck {
      *
      * @return A collection of random UnoCards
      */
-    public static Collection<UnoCard> dealCards(){
+    public static Collection<UnoCard> dealCards(int startingHandAmount){
         Collection<UnoCard> startingHand = new ArrayList<>();
-            for(int cardsDealt = 0; cardsDealt < 10; cardsDealt++){
+            for(int cardsDealt = 0; cardsDealt < startingHandAmount; cardsDealt++){
                 int index = (int)(Math.random() * deck.size());
                 startingHand.add(deck.get(index));
             }

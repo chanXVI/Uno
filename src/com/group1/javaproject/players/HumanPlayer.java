@@ -28,9 +28,9 @@ public class HumanPlayer implements Player{
      * Creation of a new Human Player. Initial hand is dealt in creation
      * @param name Name of our player!
      */
-    public HumanPlayer(String name){
+    public HumanPlayer(String name, int startingHand){
         this.name = name;
-        playerHand.addAll(Deck.dealCards());
+        playerHand.addAll(Deck.dealCards(startingHand));
     }
 
     /**

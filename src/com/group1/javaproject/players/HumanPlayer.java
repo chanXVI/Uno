@@ -6,6 +6,7 @@ import com.group1.javaproject.deck.UnoCard;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ public class HumanPlayer implements Player{
 
     private final String name;
     private final boolean isHuman = true;
+    List<UnoCard> playerHand = new ArrayList<>();
 
     /**
      * Creation of a new Human Player. Initial hand is dealt in creation
@@ -93,6 +95,25 @@ public class HumanPlayer implements Player{
     @Override
     public void skip() {
 
+    }
+
+    @Override
+    public int checkCardCount() {
+        return playerHand.size();
+    }
+
+    /**
+     * Set the current to a provided set of cards. Method created for testing purposes
+     * @param cards
+     */
+    public void setHand(List<UnoCard> cards) {
+        //playerHand is final, can not use = to change contents to that of another collection
+        //must first remove each UnoCard from playerHand, then add each new card to the List
+        int size = playerHand.size();
+        for (int i = 0; i < size; i++) {
+            playerHand.remove(0);
+        }
+        playerHand.addAll(cards);
     }
 
     /**

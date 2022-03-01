@@ -18,8 +18,6 @@ import java.util.List;
  */
 public interface Player {
 
-    List<UnoCard> playerHand = new ArrayList<>();
-
     /**
      * Draw a card from the deck and add it to a player hand
      */
@@ -50,9 +48,7 @@ public interface Player {
      * The total amount of cards a player has in their hand
      * @return the size of their hand
      */
-    default int checkCardCount(){
-        return playerHand.size();
-    }
+    int checkCardCount();
 
     /**
      * Checks to see if the provided card is playable, based on the last card played
@@ -70,20 +66,5 @@ public interface Player {
 
         //return false if card is not valid
         return false;
-    }
-
-
-    /**
-     * Set the current to a provided set of cards. Method created for testing purposes
-     * @param cards
-     */
-    default void setHand(List<UnoCard> cards){
-        //playerHand is final, can not use = to change contents to that of another collection
-        //must first remove each UnoCard from playerHand, then add each new card to the List
-        int size = playerHand.size();
-        for(int i = 0; i < size; i++){
-            playerHand.remove(0);
-        }
-        playerHand.addAll(cards);
     }
 }

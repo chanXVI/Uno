@@ -25,9 +25,9 @@ public class AiPlayer implements Player{
      * Builds a new AI Player. Initial hand is dealt in creation
      * @param name Name of the AI player!
      */
-    public AiPlayer(String name){
+    public AiPlayer(String name, int startingHand){
         this.name = name;
-        playerHand.addAll(Deck.dealCards());
+        playerHand.addAll(Deck.dealCards(startingHand));
     }
 
     /**

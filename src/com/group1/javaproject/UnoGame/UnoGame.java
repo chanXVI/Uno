@@ -57,20 +57,21 @@ public class UnoGame {
         int y = 0;
         while (y < numberOfAiPlayers){
             AiPlayerNames[y] = "AI Player - " + (y+1);
+            y++;
         }
 
         // add total players (human and Ai) to the Arraylist;
         for(String player: HumanPlayerNames){
-            players.add(new HumanPlayer(player));
+            players.add(new HumanPlayer(player, startingHand));
         }
         for (String aiPlayer: AiPlayerNames){
-            players.add(new AiPlayer(aiPlayer));
+            players.add(new AiPlayer(aiPlayer, startingHand));
         }
 
     }
     public void gameStart(){
         for (Player player: players){
-            //player.
+            System.out.println(player.checkCardCount());
         }
     }
     public boolean gameWon(){

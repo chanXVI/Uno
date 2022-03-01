@@ -17,7 +17,6 @@ import java.util.List;
  * @author Team Uno
  */
 public interface Player {
-
     /**
      * Draw a card from the deck and add it to a player hand
      */

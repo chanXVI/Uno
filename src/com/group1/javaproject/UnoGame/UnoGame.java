@@ -5,8 +5,9 @@ import com.group1.javaproject.deck.UnoCard;
 import com.group1.javaproject.players.AiPlayer;
 import com.group1.javaproject.players.HumanPlayer;
 import com.group1.javaproject.players.Player;
-import java.util.ArrayList;
-import java.util.Scanner;
+
+import java.io.IOException;
+import java.util.*;
 
 /**
  * The UnoGame allows 2-4 players to play a game of uno. Each player can be either Human or an AI with automatic responses.
@@ -23,6 +24,7 @@ public class UnoGame {
     // properties
     ArrayList<Player> players = new ArrayList<>();
     public static UnoCard topCard;
+    public static UnoCard lastCardPlayed = null;
     private int startingHand;
     private int numberOfPlayers;
     private int numberOfHumanPlayers;
@@ -47,9 +49,23 @@ public class UnoGame {
      * Starts the game of Uno!
      * Will iterate through each player, and have them play a card
      */
-    public void gameStart(){
+    public void gameStart() {
+        Collections.shuffle(players);
+        Collection<UnoCard> startCard = Deck.drawCards(1);
+        topCard = startCard.iterator().next();
+        System.out.println(topCard);
         for (Player player: players){
-            System.out.println(player.checkCardCount());
+            try {
+                lastCardPlayed = player.playCard();
+            }catch (IOException e){
+                System.out.println(e);
+            }
+           if (lastCardPlayed != null){
+               topCard = lastCardPlayed;
+           }
+            if (player.checkCardCount() == 1){
+                player.sayUno();
+            }
         }
     }
 
@@ -58,8 +74,15 @@ public class UnoGame {
      * TODO: check each player card count to see if anyone has won
      * @return a boolean stating if the game has been won or not
      */
-    public boolean gameWon(){
-        return true;
+    public static boolean gameWon(Player player){
+        if (player.checkCardCount() == 0){
+            System.out.println(player + " has won the game!!!!!!!!!!!!!!!");
+            return true;
+        } else{
+            System.out.println(player + "has not won the game. Keep playing!");
+            return false;
+        }
+
     }
 
     /**
@@ -68,16 +91,18 @@ public class UnoGame {
      * TODO: Implement method
      * @return
      */
-    public int checkCards(){
-        return 0;
+    public void checkCards(){
+        for (Player player : players){
+            System.out.println(player + "has " + player.checkCardCount() + "cards.");
+        }
     }
 
     /**
      * Creates each player for this game of Uno!
      * Note: may not be needed, depending on implementation
      */
-    public void createPlayers(){
-
+    public void createPlayers(Player player){
+        players.add(player);
     }
 
 
@@ -144,6 +169,12 @@ public class UnoGame {
         for (String player : HumanPlayerNames) {
             players.add(new HumanPlayer(player, startingHand));
         }
+
+    }
+    public void gameStart(){
+        for (Player player: players){
+            //player
+          
         for (String aiPlayer : AiPlayerNames) {
             players.add(new AiPlayer(aiPlayer, startingHand));
         }

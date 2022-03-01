@@ -169,12 +169,6 @@ public class UnoGame {
         for (String player : HumanPlayerNames) {
             players.add(new HumanPlayer(player, startingHand));
         }
-
-    }
-    public void gameStart(){
-        for (Player player: players){
-            //player
-          
         for (String aiPlayer : AiPlayerNames) {
             players.add(new AiPlayer(aiPlayer, startingHand));
         }

@@ -56,14 +56,15 @@ public class HumanPlayer implements Player{
 
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
-        System.out.println("What card do you want to play?");
+
+        System.out.println("What card does " + name +" want to play?");
         String card = null; //enter place in arraylist to get element
         try {
             card = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("You picked:");
+        System.out.println(name.toUpperCase() + " picked:");
         int x = Integer.parseInt(card); //entered number will be changed to int
         if (x > playerHand.size()){
             System.out.println("YOUR CHOICE IS EMPTY");

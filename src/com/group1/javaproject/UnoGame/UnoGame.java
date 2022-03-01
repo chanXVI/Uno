@@ -146,12 +146,4 @@ public class UnoGame {
         }
 
     }
-    public void gameStart(){
-        for (Player player: players){
-            //player
-          
-        for (String aiPlayer : AiPlayerNames) {
-            players.add(new AiPlayer(aiPlayer, startingHand));
-        }
-    }
 }

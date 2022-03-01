@@ -20,8 +20,8 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public void draw() {
-        playerHand.addAll(Deck.drawCards(1));
+    public void draw(int amount) {
+        playerHand.addAll(Deck.drawCards(amount));
     }
 
     @Override

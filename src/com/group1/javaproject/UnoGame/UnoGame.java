@@ -1,5 +1,9 @@
 package com.group1.javaproject.UnoGame;
 
+import com.group1.javaproject.deck.Deck;
+import com.group1.javaproject.deck.UnoCard;
+import com.group1.javaproject.players.AiPlayer;
+import com.group1.javaproject.players.HumanPlayer;
 import com.group1.javaproject.players.Player;
 
 import java.util.ArrayList;
@@ -7,6 +11,7 @@ import java.util.Scanner;
 
 public class UnoGame {
     ArrayList<Player> players = new ArrayList<>();
+    public static UnoCard topCard = new UnoCard("4", "green");
     private int startingHand;
     private int numberOfPlayers;
     private int numberOfHumanPlayers;
@@ -65,7 +70,7 @@ public class UnoGame {
     }
     public void gameStart(){
         for (Player player: players){
-            player.
+            //player.
         }
     }
     public boolean gameWon(){

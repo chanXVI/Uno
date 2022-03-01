@@ -22,13 +22,13 @@ public interface Player {
     /**
      * Draw a card from the deck and add it to a player hand
      */
-    void draw();
+    void draw(int amount);
 
     /**
      * Play a card based on what the top card currently is.
      * @return a valid card to be returned to the game
      */
-    UnoCard playCard();
+
     UnoCard playCard() throws IOException;
 
     /**

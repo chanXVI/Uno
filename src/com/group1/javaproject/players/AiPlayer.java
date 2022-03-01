@@ -31,15 +31,15 @@ public class AiPlayer implements Player{
      * Draw a card from the deck to add to the current hand
      */
     @Override
-    public void draw() {
+    public void draw(int amount) {
         //Collection will only contain 1 card, so addAll will only add one card
-        playerHand.addAll(Deck.drawCards(1));
+        playerHand.addAll(Deck.drawCards(amount));
     }
 
     /**
      * This method will be used instead of the standard playCard method when it is an AI players turn.
      *
-     * @return A random valid card from the AI deck, if none are present returns null
+     * @return Returns the first valid card from the AI deck, if none are present returns null
      */
     @Override
     public UnoCard playCard() {
@@ -48,9 +48,9 @@ public class AiPlayer implements Player{
 
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
-            draw();
+            draw(1);
 
-            //If a player draws, they don't play a card
+            //If a player draws, they don't play a card, and returns null to the game
             return null;
         }
 
@@ -64,14 +64,13 @@ public class AiPlayer implements Player{
             sayUno();
         }
 
-        //Returning the first index for now, for testing purposes
+        //Returning the first index
         return card;
     }
 
     /**
-     * When the AI player is down to their last card, they say Uno
-     *
-     * TODO: add additional functionality with
+     * When the AI player is down to their last card, they say Uno. This will always run with the last card,
+     * no additional functionality needed.
      */
     @Override
     public void sayUno() {

@@ -56,9 +56,9 @@ public class HumanPlayer implements Player{
 
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
-        System.out.println("What card do you want to play?");
+        System.out.println("What card does " + name +" want to play?");
         String card = reader.readLine(); //enter place in arraylist to get element
-        System.out.println("You picked:");
+        System.out.println(name.toUpperCase() + " picked:");
         int x = Integer.parseInt(card); //entered number will be changed to int
         System.out.println(playerHand.get(x)); //int x used to get UnoCard from "index x" of playerHand
         playerHand.remove(x); //remove from hand

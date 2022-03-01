@@ -67,4 +67,6 @@ public interface Player {
         //return false if card is not valid
         return false;
     }
+
+    void setHand(List<UnoCard> cards);
 }

@@ -25,15 +25,24 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public UnoCard playCard() throws IOException {
-        System.out.println(playerHand);
+    public UnoCard playCard()  {
+        System.out.println(playerHand); //see hand before picking card
 
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
         System.out.println("What card do you want to play?");
-        String card = reader.readLine(); //enter place in arraylist to get element
+        String card = null; //enter place in arraylist to get element
+        try {
+            card = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("You picked:");
         int x = Integer.parseInt(card); //entered number will be changed to int
+        if (x > playerHand.size()){
+            System.out.println("YOUR CHOICE IS EMPTY");
+            playCard();
+        }
         System.out.println(playerHand.get(x)); //int x used to get UnoCard from "index x" of playerHand
         playerHand.remove(x); //remove from hand
 

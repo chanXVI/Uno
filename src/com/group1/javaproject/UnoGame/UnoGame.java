@@ -1,6 +1,9 @@
 package com.group1.javaproject.UnoGame;
 
 import com.group1.javaproject.players.Player;
+import com.group1.javaproject.players.HumanPlayer;
+import com.group1.javaproject.players.AiPlayer;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -65,7 +68,7 @@ public class UnoGame {
     }
     public void gameStart(){
         for (Player player: players){
-            player.
+            //player.
         }
     }
     public boolean gameWon(){

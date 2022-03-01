@@ -16,7 +16,6 @@ import java.util.List;
  * @author Team Uno
  */
 public interface Player {
-
     List<UnoCard> playerHand = new ArrayList<>();
 
     void draw();

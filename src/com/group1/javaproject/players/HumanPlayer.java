@@ -70,6 +70,10 @@ public class HumanPlayer implements Player{
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
         System.out.println(name + " pick number of card you want to play");
+
+
+        System.out.println("What card does " + name +" want to play?");
+
         String card = null; //enter place in arraylist to get element
         try {
             card = reader.readLine();
@@ -81,6 +85,10 @@ public class HumanPlayer implements Player{
         int x = Integer.parseInt(card);
 
         //if the number 'x' is larger than size of player hand. Show message and try again
+      
+        System.out.println(name.toUpperCase() + " picked:");
+        int x = Integer.parseInt(card); //entered number will be changed to int
+
         if (x > playerHand.size()){
             System.out.println(x + " SLOT EMPTY. Please pick playable card");
             playCard();

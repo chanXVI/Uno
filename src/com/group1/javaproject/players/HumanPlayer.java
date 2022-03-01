@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.group1.javaproject.UnoGame.UnoGame.topCard;
+
 /**
  * A human controlled player for the UnoGame class. Each turn, a method is called and the user will be
  * prompted to play a card from their hand.
@@ -28,6 +30,12 @@ public class HumanPlayer implements Player{
      * Creation of a new Human Player. Initial hand is dealt in creation
      * @param name Name of our player!
      */
+
+    public HumanPlayer(String name){
+        this.name = name;
+        playerHand.addAll(Deck.dealCards(10));
+    }
+
     public HumanPlayer(String name, int startingHand){
         this.name = name;
         playerHand.addAll(Deck.dealCards(startingHand));
@@ -52,27 +60,48 @@ public class HumanPlayer implements Player{
      */
     @Override
     public UnoCard playCard()  {
-        System.out.println(playerHand); //see hand before picking card
+        //display current top card/last played card
+        System.out.println(topCard + " is currently on top of pile");
+        System.out.println("============================");
+        //see hand before picking card
+        System.out.println(playerHand);
 
+        //choice card that you want to play
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
-        System.out.println("What card do you want to play?");
+        System.out.println(name + " pick number of card you want to play");
         String card = null; //enter place in arraylist to get element
         try {
             card = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("You picked:");
-        int x = Integer.parseInt(card); //entered number will be changed to int
+
+        //entered number will be changed to int
+        int x = Integer.parseInt(card);
+
+        //if the number 'x' is larger than size of player hand. Show message and try again
         if (x > playerHand.size()){
-            System.out.println("YOUR CHOICE IS EMPTY");
+            System.out.println(x + " SLOT EMPTY. Please pick playable card");
             playCard();
         }
-        System.out.println(playerHand.get(x)); //int x used to get UnoCard from "index x" of playerHand
-        playerHand.remove(x); //remove from hand
 
-        return playerHand.get(x);
+        //getting card that you picked from list
+        UnoCard pickedCard = playerHand.get(x);
+
+        //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
+        if (!isCardValid(pickedCard)){
+            System.out.println(pickedCard + " is not a valid card please draw"); //trying to play an invalid card
+            draw(1);
+            System.out.println(playerHand); //shows newly drawn card at end of player hand list
+
+            return null;
+        } else{
+            System.out.println("You picked: " + pickedCard); //int x used to get UnoCard from "index x" of playerHand
+            playerHand.remove(x); //remove from hand
+        }
+
+        return pickedCard;
     }
 
     /**

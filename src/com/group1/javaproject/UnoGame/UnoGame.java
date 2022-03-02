@@ -13,8 +13,6 @@ import java.util.*;
  * The UnoGame allows 2-4 players to play a game of uno. Each player can be either Human or an AI with automatic responses.
  * Each Player will use UnoCards to try to bring their card count down to 0.
  *
- * TODO: Implement turns
- *
  * @see Player
  * @see Deck
  * @see UnoCard
@@ -104,14 +102,16 @@ public class UnoGame implements HasTurns{
     public void startTurn(){
 
         //if the last card was a draw card, the next player needs to draw and their turn is skipped
-        if(lastCardPlayed.getNumber().equals("wild+4")){
-            players.get(turn).draw(4);
-            System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
-            skip();
-        }else if(lastCardPlayed.getNumber().equals("+2")){
-            players.get(turn).draw(2);
-            System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
-            skip();
+        if(lastCardPlayed != null){
+            if(lastCardPlayed.getNumber().equals("wild+4")){
+                players.get(turn).draw(4);
+                System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
+                skip();
+            }else if(lastCardPlayed.getNumber().equals("+2")){
+                players.get(turn).draw(2);
+                System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
+                skip();
+            }
         }
 
         //last card played is now null, so we don't force everyone to draw

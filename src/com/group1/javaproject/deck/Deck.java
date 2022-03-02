@@ -84,10 +84,10 @@ public class Deck {
         deck.add(new UnoCard("7", "green"));
         deck.add(new UnoCard("8", "green"));
         deck.add(new UnoCard("9", "green"));
-        deck.add(new UnoCard("wild+2", "wild"));
-        deck.add(new UnoCard("wild+2", "wild"));
-        deck.add(new UnoCard("wild+2", "wild"));
-        deck.add(new UnoCard("wild+2", "wild"));
+        deck.add(new UnoCard("+2", "wild"));
+        deck.add(new UnoCard("+2", "wild"));
+        deck.add(new UnoCard("+2", "wild"));
+        deck.add(new UnoCard("+2", "wild"));
         deck.add(new UnoCard("wild+4", "wild"));
         deck.add(new UnoCard("wild+4", "wild"));
         deck.add(new UnoCard("wild+4", "wild"));

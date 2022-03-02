@@ -9,7 +9,7 @@ import java.util.Random;
  * and the method calls exist to grab UnoCards from the list at random.
  *
  * @see UnoCard
- * @author
+ * @author Sanil & Trevor
  */
 public class Deck {
     // properties

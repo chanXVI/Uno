@@ -100,8 +100,25 @@ public class HumanPlayer implements Player{
         //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
         if (!isCardValid(pickedCard)){
             System.out.println(pickedCard + " is not a valid card please draw"); //trying to play an invalid card
-            draw(1);
-            System.out.println(playerHand); //shows newly drawn card at end of player hand list
+
+            InputStreamReader drawInput = new InputStreamReader(System.in);
+            BufferedReader drawReader = new BufferedReader(drawInput);
+            System.out.println("press '0' to draw a card or any other number to try again");
+            String drawCard = null;
+
+            try {
+                drawCard = drawReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            int d = Integer.parseInt(drawCard);
+            if (d == 0){
+                draw(1);
+                System.out.println("One card has been drawn" + playerHand);
+            } else{
+                playCard();
+            }
 
             return null;
         } else{

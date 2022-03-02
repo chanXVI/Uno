@@ -81,24 +81,6 @@ public class AiPlayer implements Player{
         System.out.println("Uno!");
     }
 
-    /**
-     * Reverse the order of turns
-     * TODO: implementation. Implement while implementing turns
-     */
-    @Override
-    public void reverse() {
-
-    }
-
-    /**
-     * Skip the player turn
-     * TODO: implementation. Implement while implementing turns
-     */
-    @Override
-    public void skip() {
-
-    }
-
     @Override
     public int checkCardCount(){
         return playerHand.size();

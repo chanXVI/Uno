@@ -69,9 +69,6 @@ public class HumanPlayer implements Player{
         //choice card that you want to play
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
-        System.out.println(name + " pick number of card you want to play");
-
-
         System.out.println("What card does " + name +" want to play?");
 
         String card = null; //enter place in arraylist to get element
@@ -81,8 +78,6 @@ public class HumanPlayer implements Player{
             e.printStackTrace();
         }
 
-        //entered number will be changed to int
-        int x = Integer.parseInt(card);
 
         //if the number 'x' is larger than size of player hand. Show message and try again
       

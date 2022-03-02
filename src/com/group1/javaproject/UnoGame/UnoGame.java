@@ -50,21 +50,23 @@ public class UnoGame {
      * Will iterate through each player, and have them play a card
      */
     public void gameStart() {
+        System.out.println("\n***UNO GAME HAS STARTED***\n");
         Collections.shuffle(players);
         Collection<UnoCard> startCard = Deck.drawCards(1);
         topCard = startCard.iterator().next();
-        System.out.println(topCard);
-        for (Player player: players){
+//        System.out.println(topCard);
+//        for (Player player: players){
+        for (int x = 0; x < players.size(); x++){
             try {
-                lastCardPlayed = player.playCard();
+                lastCardPlayed = players.get(x).playCard();
             }catch (IOException e){
                 System.out.println(e);
             }
            if (lastCardPlayed != null){
                topCard = lastCardPlayed;
            }
-            if (player.checkCardCount() == 1){
-                player.sayUno();
+            if (players.get(x).checkCardCount() == 1){
+                players.get(x).sayUno();
             }
         }
     }

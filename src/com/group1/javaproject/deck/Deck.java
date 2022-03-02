@@ -21,8 +21,7 @@ public class Deck {
     public static final String BACKGROUND_COLOR_YELLOW = "\u001B[43m";
     public static final String BACKGROUND_COLOR_GREEN = "\u001B[42m";
     public static final String BACKGROUND_COLOR_WHITE = "\u001B[47m";
-    public static final String COLOR_RESET = "\u001b[0m";
-
+    public static final String ANSI_RESET = "\u001B[0m";
 
     // constructors
     // methods
@@ -57,52 +56,52 @@ public class Deck {
         return addToHand;
     }
     //toString
-
     // deck array list
+
     static {
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"1" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"2" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"3" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"4" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"5" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"6" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"7" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"8" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"9" + COLOR_RESET, "blue"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "1" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "2" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "3" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "4" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "5" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "6" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "7" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "8" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "9" + COLOR_RESET, "red"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS + "1" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"2" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"3" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"4" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"5" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"6" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"7" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"8" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"9" + COLOR_RESET, "yellow"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS + "1" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"2" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"3" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"4" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"5" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"6" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"7" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"8" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"9" + COLOR_RESET, "green"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"+2" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS +"+2" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"+2" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"+2" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + COLOR_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + COLOR_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"1" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"2" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"3" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"4" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"5" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"6" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"7" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"8" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"9" + ANSI_RESET, "blue"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "1" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "2" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "3" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "4" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "5" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "6" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "7" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "8" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS + "9" + ANSI_RESET, "red"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS + "1" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"2" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"3" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"4" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"5" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"6" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"7" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"8" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"9" + ANSI_RESET, "yellow"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS + "1" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"2" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"3" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"4" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"5" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"6" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"7" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"8" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"9" + ANSI_RESET, "green"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"+2" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_RED + BLACK_LETTERS +"+2" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS +"+2" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"+2" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
+        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
     }
 }

@@ -2,18 +2,17 @@ package com.group1.javaproject.deck;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Random;
 
 /**
  * A holder class for our deck of cards. The contents of this class are immutable,
  * and the method calls exist to grab UnoCards from the list at random.
  *
  * @see UnoCard
- * @author
+ * @author Sanil & Trevor
  */
 public class Deck {
     // properties
-    private static ArrayList<UnoCard> deck = new ArrayList<>();
+    private static final ArrayList<UnoCard> deck = new ArrayList<>();
     // constructors
     // methods
 

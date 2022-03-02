@@ -81,7 +81,12 @@ public class HumanPlayer implements Player{
         System.out.println(topCard + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card
-        System.out.println(playerHand);
+        int y = 1;
+        for(UnoCard card : playerHand){
+            System.out.println(y + "." + card);
+            y++;
+        }
+//        System.out.println(playerHand);
 
 
         //choice card that you want to play
@@ -96,7 +101,7 @@ public class HumanPlayer implements Player{
             e.printStackTrace();
         }
         //entered number will be changed to int
-        int x = Integer.parseInt(card);
+        int x = Integer.parseInt(card) - 1;
 
         //if the number 'x' is larger than size of player hand. Show message and try again
 

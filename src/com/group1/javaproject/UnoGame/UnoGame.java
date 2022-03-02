@@ -245,5 +245,9 @@ public class UnoGame implements HasTurns{
             players.add(new HumanPlayer(player, startingHand));
         }
 
+        for (String aiPlayer : AiPlayerNames){
+            players.add(new AiPlayer(aiPlayer, startingHand));
+        }
+
     }
 }

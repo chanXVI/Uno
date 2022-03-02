@@ -23,7 +23,7 @@ import java.util.*;
 public class UnoGame implements HasTurns{
     // properties
     ArrayList<Player> players = new ArrayList<>();
-    public static UnoCard topCard;
+    public static UnoCard topCard = new UnoCard("wild+4", "wild");
     public static UnoCard lastCardPlayed = null;
     private int startingHand;
     private int numberOfPlayers;

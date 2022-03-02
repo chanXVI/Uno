@@ -62,7 +62,7 @@ public class HumanPlayer implements Player{
     public UnoCard playCard()  {
         System.out.println(topCard);
         //handling wild cards
-        if (topCard.getColor() == "wild"){
+        if (topCard.getColor().equalsIgnoreCase("wild")){
             InputStreamReader colorInput = new InputStreamReader(System.in);
             BufferedReader colorReader = new BufferedReader(colorInput);
             System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
@@ -74,7 +74,6 @@ public class HumanPlayer implements Player{
             }
 
             topCard.setColor(choice);
-            //topCard.setColor("red");
         }
 
         //display current top card/last played card

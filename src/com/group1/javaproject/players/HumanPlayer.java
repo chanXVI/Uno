@@ -60,18 +60,33 @@ public class HumanPlayer implements Player{
      */
     @Override
     public UnoCard playCard()  {
+        System.out.println(topCard);
+        //handling wild cards
+        if (topCard.getColor().equalsIgnoreCase("wild")){
+            InputStreamReader colorInput = new InputStreamReader(System.in);
+            BufferedReader colorReader = new BufferedReader(colorInput);
+            System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
+            String choice = null;
+            try {
+                choice = colorReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            topCard.setColor(choice);
+        }
+
         //display current top card/last played card
+        System.out.println(topCard.getColor() + "THIS!!!!");
         System.out.println(topCard + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card
         System.out.println(playerHand);
 
+
         //choice card that you want to play
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
-        System.out.println(name + " pick number of card you want to play");
-
-
         System.out.println("What card does " + name +" want to play?");
 
         String card = null; //enter place in arraylist to get element
@@ -85,6 +100,7 @@ public class HumanPlayer implements Player{
         int x = Integer.parseInt(card);
 
         //if the number 'x' is larger than size of player hand. Show message and try again
+
         if (x > playerHand.size()){
             System.out.println(x + " SLOT EMPTY. Please pick playable card");
             playCard();

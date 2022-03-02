@@ -43,8 +43,9 @@ public class UnoCard {
      * Change the color of this card
      * @param color the color that will update this card
      */
-    public void setColor(String color) {
+    public String setColor(String color) {
         this.color = color;
+        return color;
     }
     // toString
     @Override

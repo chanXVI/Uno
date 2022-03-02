@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class UnoGame implements HasTurns{
     // properties
-    ArrayList<Player> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
     public static UnoCard topCard = new UnoCard("wild+4", "wild");
     public static UnoCard lastCardPlayed = null;
     private int startingHand;
@@ -248,9 +248,58 @@ public class UnoGame implements HasTurns{
             players.add(new AiPlayer(player, startingHand));
         }
 
-        for (String aiPlayer : AiPlayerNames){
-            players.add(new AiPlayer(aiPlayer, startingHand));
-        }
-
     }
+
+    //Methods created for testing
+
+    /**
+     * A method made for testing UnoGame
+     * @param starting the amount of cards to start with
+     */
+    public void setStartingCards(int starting){
+        this.startingHand = starting;
+    }
+
+    /**
+     * A method created for testing without using Scanners
+     * @param numberOfPlayers the number of players to create
+     */
+    public void setNumberOfPlayers(int numberOfPlayers){
+        this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public void setNumberOfHumanPlayers(int numberOfHumanPlayers){
+        this.numberOfHumanPlayers = numberOfHumanPlayers;
+        this.numberOfAiPlayers = numberOfPlayers - numberOfHumanPlayers;
+    }
+
+    public void setPlayerNames(String ... names){
+        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
+        String AiPlayerNames[] = new String[numberOfAiPlayers];
+
+        // names of the human player
+        int x = 0;
+        while (x < numberOfHumanPlayers) {
+            HumanPlayerNames[x] = "Human Player " + x;
+            x++;
+        }
+        // names of AI players
+        int y = 0;
+        while (y < numberOfAiPlayers) {
+            AiPlayerNames[y] = "AI Player - " + (y + 1);
+            y++;
+        }
+        // add total players (human and Ai) to the Arraylist;
+        for (String player : HumanPlayerNames) {
+            players.add(new HumanPlayer(player, startingHand));
+        }
+        for(String player : AiPlayerNames){
+            players.add(new AiPlayer(player, startingHand));
+        }
+    }
+
+    public List<Player> getPlayers(){
+        return players;
+    }
+
 }

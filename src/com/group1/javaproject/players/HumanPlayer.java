@@ -60,24 +60,8 @@ public class HumanPlayer implements Player{
      */
     @Override
     public UnoCard playCard()  {
-        System.out.println(topCard);
-        //handling wild cards
-        if (topCard.getColor().equalsIgnoreCase("wild")){
-            InputStreamReader colorInput = new InputStreamReader(System.in);
-            BufferedReader colorReader = new BufferedReader(colorInput);
-            System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
-            String choice = null;
-            try {
-                choice = colorReader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        //System.out.println(topCard);
 
-            topCard.setColor(choice);
-        }
-
-        //display current top card/last played card
-        //System.out.println(topCard.getColor() + "THIS!!!!");
         System.out.println(topCard + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card
@@ -123,6 +107,20 @@ public class HumanPlayer implements Player{
         } else{
             System.out.println("You picked: " + pickedCard); //int x used to get UnoCard from "index x" of playerHand
             playerHand.remove(x); //remove from hand
+        }
+
+        if (pickedCard.getColor().equalsIgnoreCase("wild")){
+            InputStreamReader colorInput = new InputStreamReader(System.in);
+            BufferedReader colorReader = new BufferedReader(colorInput);
+            System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
+            String choice = null;
+            try {
+                choice = colorReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            pickedCard.setColor(choice);
         }
 
         return pickedCard;

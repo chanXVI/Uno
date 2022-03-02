@@ -26,7 +26,8 @@ public class Deck {
         Collection<UnoCard> startingHand = new ArrayList<>();
             for(int cardsDealt = 0; cardsDealt < startingHandAmount; cardsDealt++){
                 int index = (int)(Math.random() * deck.size());
-                startingHand.add(deck.get(index));
+                UnoCard tempCard = new UnoCard(deck.get(index).number, deck.get(index).color);
+                startingHand.add(tempCard);
             }
         return startingHand;
     }
@@ -40,7 +41,8 @@ public class Deck {
         Collection<UnoCard> addToHand = new ArrayList<>();
         for(int cardDrawn = 0; cardDrawn < cardsToDraw; cardDrawn++){
             int index = (int)(Math.random() * deck.size());
-            addToHand.add(deck.get(index));
+            UnoCard tempCard = new UnoCard(deck.get(index).number, deck.get(index).color);
+            addToHand.add(tempCard);
         }
         return addToHand;
     }

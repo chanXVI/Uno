@@ -50,6 +50,6 @@ public class UnoCard {
     // toString
     @Override
     public String toString(){
-        return "Uno Card: "+getColor() + " " + getNumber();
+        return "Uno Card: "+/*getColor() + " "*/ getNumber();
     }
 }

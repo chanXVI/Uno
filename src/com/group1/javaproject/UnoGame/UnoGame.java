@@ -50,6 +50,7 @@ public class UnoGame implements HasTurns{
      * Will iterate through each player, and have them play a card
      */
     public void gameStart() {
+        setGameDesign();
         Collections.shuffle(players);
         Collection<UnoCard> startCard = Deck.drawCards(1);
         topCard = startCard.iterator().next();
@@ -242,7 +243,48 @@ public class UnoGame implements HasTurns{
         for(String player : AiPlayerNames){
             players.add(new AiPlayer(player, startingHand));
         }
-
+    }
+        // design the console when game starts
+    public void setGameDesign(){
+        System.out.println("" +
+                "55555555555555555555555555555555555555555555555555555555555555555555555555555555\n" +
+                "5555555555555555555555555555555555555555555555555555555555555PP555Y5PGPBBB555555\n" +
+                "5555555555555555555555555555555555555555555555555555555555P5YJJ????~5BPGGP555555\n" +
+                "555555555555555555555555555555555555555555555555555555555PJ7JY7!!~!J!55555555555\n" +
+                "55555555555555555555555555555555555555555555555PP55555555!?GGG!:^^:7?7P555555555\n" +
+                "555555555555555555555555555555555555555555555P5YJ????????^?B5GG~^^^:J!?P55555555\n" +
+                "5555555555555555555555555555555555555PP5P5P5J?777!!~~~~~!7?B#GBP^^^^^Y~YP5555555\n" +
+                "555555555555555555555555555555555P55YJ??7YJ!JJ!^^::^^~^^:^^~YB&&Y:^^^~Y~55555555\n" +
+                "55555555555555555555555555PP555PY???77!7J^?BY^^^^?P#&&#P?^^^:!G&&J:^^^7J!5555555\n" +
+                "55555555555555555555PP555YJJ55P?7YGG~^^:?G@P:^^^5P55G&#GGG!^^^~B&#7:^^:?77P55555\n" +
+                "555555555555555PP55YJ??777777?J^JB5BP:^^:5@?:^^!J~YY?!JBB#G^^^:J&&B!~!775!JP5555\n" +
+                "55555555PP555P5J??777?#?^^^^~777^P#B#J:^^^GY:^^~Y~5PP5!J##&!^^:7&#&B?!~^^Y~Y5555\n" +
+                "555PP555YJYP5J7JPG~^^:Y#~^^^^^^~!JB&@@7:^^~G~^^^!J!J55J^&@P^^^:YB&#&5::^!YJ~5555\n" +
+                "5P5J???77J~JP~JB5BY:^^:PG^^^^:^::^^7Y##!^^:7G~:^^~777?7JP?^^^^??^B&&&PPBGJ7Y5555\n" +
+                "5J7JBY~~^~Y~5Y~P#B#?:^^^#5:^^^YP7~:::^!!:^^:J#J^:^^^~~~^::^^!J77?!BBP5J??Y5P5555\n" +
+                "Y^G@@#~^^^!J~PJ~B#@&!^^^!&?:^^^B@#P?~^:^^^^^:5@#5?!~^^^^~7J5Y7JPP77?JY55P5555555\n" +
+                "577@@@B^^^:?77P77@@@B^^^:?&!^^^!&@@@&GJ~^^^^^^G@@@@&#####GY7?5P5555PP55555555555\n" +
+                "55~J@@@5:^^^J!?P!J@@@P^^^:P#^^^:?BP&@@@&GJ!^~!YGY5PPP5YJ??J5P5555555555555555555\n" +
+                "555~P#PGJ:^^^Y~Y5~P@@&~^^:7@P^^^:J~^JP#@@@@##GJ7JJJJJJY55PP555555555555555555555\n" +
+                "55PY~GGB#7:^^~J7?7!@&Y^^^:J@@Y:^^!P^?J7?5PYJ??J5P5PPP555555555555PPPP55555555555\n" +
+                "555P?!#B#&7:^^^!77??~^^^^7B@@@PPBG?7YP5YJJY5PPPPPP5555555555555P5J?JY5PPPPP55555\n" +
+                "5555P77&@@@5~^^::^:::^~7?7!##GPY?7YPPPPP55YJ?7!~^~5P5555555555P5: .^^^^~7?Y55PPP\n" +
+                "55555577B@@@&GYJ???YPG57?Y?7?JYY55YJ?7!~~!7?Y5PG5:^P5555555555P^ JB#BBPY?!^^^~!?\n" +
+                "555555PY7?P#&@@@@&BPY??YP5PPJ7!~!!7?J5PB##G5YJJJ5J JP5PPPPPP5P? 7BPY?YP5J5#BG5J7\n" +
+                "555555555YJ????????JY5P555P? ^PBGPPB&&&BY7?YYYYY?!^!5YYYYYYYP5 ^#GYJ75?~~J#&&&&&\n" +
+                "5555555555PP555555PP555555P5.7&GY55Y##Y!JG7.:~~~!!!~~~~!!!!!5^ P&#BGBGPYYPG5J?!!\n" +
+                "555555555555555555555555PPPB7.G5^7JG#77PBB.:Y5JJ7755555YJ??G7 ?&##&&&B57~:      \n" +
+                "555555555555555555555PP5J!~BB.!#55B#!?GPB#:~P!???!J5J7!7?J5Y ~##&#BY~.          \n" +
+                "55555555555555555PPPY?~^~?5G&J P&&#77GGPB#:^PJ!?JJJ!!JY55PG:.G&#5!.  ^^:.   .J?!\n" +
+                "55555555555555PP5J!^~7YPPGY!B#:~#&Y~PGGPB#:^55P5J!!Y55555B! Y#Y^   .P#GP5YJ!Y&!^\n" +
+                "5555555555555PJ~^~?5YJYPPJ~5G@Y 5#~YGGGPB#:^5557~J555555GY !Y^     J@GPPGPGP&?^^\n" +
+                "555555555555P5  YG5?PJ7PY^5PP#&^^5~YY?7!J#:^5Y~!555Y7!!?P. ^ .7?!^!&BPPBGGGBG!^^\n" +
+                "555555555555P#Y.!PG5GGGP~?PG?~B5 ::^^^^^?#:^Y~755P7^J5PB~    Y&P55PBPPGGPPPPGP~^\n" +
+                "555555555555B&&P:^5GPPP5^PPBP:?&! :^^^^^?#^:~755GY.5Y!J?    7&P5555GBBBGGGGGPJY5\n" +
+                "5555555555555G#&B~.JPPPJ~PPPBG!BP..^^^^^7#^ ~555GP.::YP.   :#B555555B&GPPGPG~  .\n" +
+                "55555555555555G#&#?.7PG?!PPG~: 7&7 ^^^^^7#^ J5555GP?7P^    P&P5555P?B#BBGGG?    \n" +
+                "555555555555555PB&&5.~PJ~PPBY. .PB..:^^^7#^:Y555555P#7    .!J5PGG57 .:~7JJ7. .~Y\n" +
+                "5555555555555555PB#&G:^J^5PP#G: !&? ^::^7#~:Y555555P5 :.      .:^:         .7P#&");
     }
 
     //Methods created for testing

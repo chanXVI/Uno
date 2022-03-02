@@ -60,7 +60,7 @@ public interface Player {
         UnoCard topCard = UnoGame.topCard;
 
         //If the card is a wild card, or has the same number or color as the top card, it is a valid card
-        if(card.getColor() == "wild"  || card.getColor() == topCard.getColor() || card.getNumber() == topCard.getNumber()){
+        if(card.getColor().equals("wild")   || card.getColor().equals(topCard.getColor())  || card.getNumber().equals(topCard.getNumber())){
             return true;
         }
 

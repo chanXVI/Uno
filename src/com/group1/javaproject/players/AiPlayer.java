@@ -31,12 +31,11 @@ public class AiPlayer implements Player{
     }
 
     /**
-     * Draw a card from the deck to add to the current hand
+     * Draw cards from the deck to add to the current hand
      * @param amount Amount of cards to be added to the AI hand
      */
     @Override
     public void draw(int amount) {
-        //Collection will only contain 1 card, so addAll will only add one card
         playerHand.addAll(Deck.drawCards(amount));
     }
 
@@ -69,7 +68,25 @@ public class AiPlayer implements Player{
             sayUno();
         }
 
+        //if the chosen card is a wild card, pick a random color.
+        if(card.getColor().equals("wild")){
+            //This Ai doesn't care if they have that color in their hand or not
+            card.setColor(getWildColor());
+        }
+
         return card;
+    }
+
+    public String getWildColor(){
+        double colorChoice = Math.random();
+        if(colorChoice > 0.75){
+           return "red";
+        }else if(colorChoice > 0.5) {
+            return "blue";
+        }else if(colorChoice > 0.25){
+            return "green";
+        }
+        return "yellow";
     }
 
     /**
@@ -80,6 +97,7 @@ public class AiPlayer implements Player{
     public void sayUno() {
         System.out.println("Uno!");
     }
+
 
     @Override
     public int checkCardCount(){

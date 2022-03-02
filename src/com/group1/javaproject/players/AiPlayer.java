@@ -59,6 +59,7 @@ public class AiPlayer implements Player{
 
         //create new reference for the card for readability
         UnoCard card = validCards.get(0);
+        System.out.println(name + " played " + card);
 
         //card is removed once used
         playerHand.remove(card);
@@ -70,8 +71,11 @@ public class AiPlayer implements Player{
 
         //if the chosen card is a wild card, pick a random color.
         if(card.getColor().equals("wild")){
+
             //This Ai doesn't care if they have that color in their hand or not
             card.setColor(getWildColor());
+
+            System.out.println(name + " changed the color to " + card.getColor());
         }
 
         return card;

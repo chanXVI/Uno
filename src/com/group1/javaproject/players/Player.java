@@ -34,15 +34,6 @@ public interface Player {
      */
     void sayUno();
 
-    /**
-     * Reverse the order of turns
-     */
-    void reverse();
-
-    /**
-     * Skip the next player
-     */
-    void skip();
 
     /**
      * The total amount of cards a player has in their hand

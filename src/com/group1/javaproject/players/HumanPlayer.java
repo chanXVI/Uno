@@ -77,7 +77,7 @@ public class HumanPlayer implements Player{
         }
 
         //display current top card/last played card
-        System.out.println(topCard.getColor() + "THIS!!!!");
+        //System.out.println(topCard.getColor() + "THIS!!!!");
         System.out.println(topCard + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card

@@ -77,7 +77,8 @@ public class HumanPlayer implements Player{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //entered number will be changed to int
+        int x = Integer.parseInt(card);
 
         //if the number 'x' is larger than size of player hand. Show message and try again
         if (x > playerHand.size()){

@@ -20,7 +20,7 @@ import java.util.*;
  * @see UnoCard
  * @author Team Uno
  */
-public class UnoGame {
+public class UnoGame implements HasTurns{
     // properties
     ArrayList<Player> players = new ArrayList<>();
     public static UnoCard topCard;
@@ -55,39 +55,17 @@ public class UnoGame {
         Collections.shuffle(players);
         Collection<UnoCard> startCard = Deck.drawCards(1);
         topCard = startCard.iterator().next();
-        System.out.println(topCard);
+        //System.out.println(topCard);
+
+        //time to play the game
         while(!gameWon()){
-
-            if(lastCardPlayed.getNumber().equals("wild+4")){
-                players.get(turn).draw(4);
-                System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
-                skip();
-            }else if(lastCardPlayed.getNumber().equals("+2")){
-                players.get(turn).draw(2);
-                System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
-                skip();
-            }
-
-            lastCardPlayed = null;
-
-            try{
-                lastCardPlayed = players.get(turn).playCard();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            if(lastCardPlayed != null){
-                if(lastCardPlayed.getNumber().equals("reverse")){
-                    reverse();
-                }
-                topCard = lastCardPlayed;
-            }
+            startTurn();
             nextTurn();
         }
     }
 
     /**
      * A player with 0 cards will win the game!
-     * TODO: check each player card count to see if anyone has won
      * @return a boolean stating if the game has been won or not
      */
     public boolean gameWon(){
@@ -119,15 +97,46 @@ public class UnoGame {
     }
 
     //turn methods: subject to change for now, just testing implementation
-    public UnoCard startTurn(Player player){
+
+    /**
+     * The start of a new turn.
+     */
+    public void startTurn(){
+
+        //if the last card was a draw card, the next player needs to draw and their turn is skipped
+        if(lastCardPlayed.getNumber().equals("wild+4")){
+            players.get(turn).draw(4);
+            System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
+            skip();
+        }else if(lastCardPlayed.getNumber().equals("+2")){
+            players.get(turn).draw(2);
+            System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
+            skip();
+        }
+
+        //last card played is now null, so we don't force everyone to draw
+        lastCardPlayed = null;
+
+        //player plays their card
         try{
-            return player.playCard();
+            lastCardPlayed = players.get(turn).playCard();
         }catch(IOException e){
             e.printStackTrace();
         }
-        return null;
+
+        //if did not draw, we check if they played a reverse card, so we know what turn is next
+        if(lastCardPlayed != null){
+            if(lastCardPlayed.getNumber().equals("reverse")){
+                reverse();
+            }
+            //only updating the top card if a card was actually played
+            topCard = lastCardPlayed;
+        }
     }
 
+    /**
+     * Reverses the order of turns
+     */
     public void reverse(){
         if(reversed){
             reversed =  false;
@@ -136,6 +145,9 @@ public class UnoGame {
         }
     }
 
+    /**
+     * A player has had their turn skipped.
+     */
     public void skip(){
         if(reversed){
             turn--;
@@ -144,6 +156,9 @@ public class UnoGame {
         }
     }
 
+    /**
+     * Determines what turn is next, based on turn order and if someone has been skipped.
+     */
     public void nextTurn(){
         if(reversed){
             if(turn == 0){

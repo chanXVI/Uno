@@ -80,10 +80,6 @@ public class HumanPlayer implements Player{
 
 
         //if the number 'x' is larger than size of player hand. Show message and try again
-      
-        System.out.println(name.toUpperCase() + " picked:");
-        int x = Integer.parseInt(card); //entered number will be changed to int
-
         if (x > playerHand.size()){
             System.out.println(x + " SLOT EMPTY. Please pick playable card");
             playCard();
@@ -118,24 +114,6 @@ public class HumanPlayer implements Player{
         } else{
             System.out.println("FOUL ON THE PLAY");
         }
-    }
-
-    /**
-     * Reverse the order of turns
-     * TODO: implementation. Implement while implementing turns
-     */
-    @Override
-    public void reverse() {
-
-    }
-
-    /**
-     * Skip the player turn
-     * TODO: implementation. Implement while implementing turns
-     */
-    @Override
-    public void skip() {
-
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.util.*;
  * @see UnoCard
  * @author Team Uno
  */
-public class UnoGame {
+public class UnoGame implements HasTurns{
     // properties
     ArrayList<Player> players = new ArrayList<>();
     public static UnoCard topCard;
@@ -29,6 +29,8 @@ public class UnoGame {
     private int numberOfPlayers;
     private int numberOfHumanPlayers;
     private int numberOfAiPlayers;
+    private int turn;
+    private boolean reversed = false;
     Scanner input = new Scanner(System.in);
 
     // business methods
@@ -50,48 +52,35 @@ public class UnoGame {
      * Will iterate through each player, and have them play a card
      */
     public void gameStart() {
-        System.out.println("\n***UNO GAME HAS STARTED***\n");
         Collections.shuffle(players);
         Collection<UnoCard> startCard = Deck.drawCards(1);
         topCard = startCard.iterator().next();
-//        System.out.println(topCard);
-//        for (Player player: players){
-        for (int x = 0; x < players.size(); x++){
-            try {
-                lastCardPlayed = players.get(x).playCard();
-            }catch (IOException e){
-                System.out.println(e);
-            }
-           if (lastCardPlayed != null){
-               topCard = lastCardPlayed;
-           }
-            if (players.get(x).checkCardCount() == 1){
-                players.get(x).sayUno();
-            }
+        //System.out.println(topCard);
+
+        //time to play the game
+        while(!gameWon()){
+            startTurn();
+            nextTurn();
         }
     }
 
     /**
      * A player with 0 cards will win the game!
-     * TODO: check each player card count to see if anyone has won
      * @return a boolean stating if the game has been won or not
      */
-    public static boolean gameWon(Player player){
-        if (player.checkCardCount() == 0){
+    public boolean gameWon(){
+        boolean won = false;
+        for(Player player : players)
+            if (player.checkCardCount() == 0){
             System.out.println(player + " has won the game!!!!!!!!!!!!!!!");
-            return true;
-        } else{
-            System.out.println(player + "has not won the game. Keep playing!");
-            return false;
+            won = true;
         }
+        return won;
 
     }
 
     /**
      * Checks the number of cards each player has
-     * TODO: Either add parameter for Player, or change return type to void
-     * TODO: Implement method
-     * @return
      */
     public void checkCards(){
         for (Player player : players){
@@ -107,6 +96,90 @@ public class UnoGame {
         players.add(player);
     }
 
+    //turn methods: subject to change for now, just testing implementation
+
+    /**
+     * The start of a new turn.
+     */
+    public void startTurn(){
+
+        //if the last card was a draw card, the next player needs to draw and their turn is skipped
+        if(lastCardPlayed.getNumber().equals("wild+4")){
+            players.get(turn).draw(4);
+            System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
+            skip();
+        }else if(lastCardPlayed.getNumber().equals("+2")){
+            players.get(turn).draw(2);
+            System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
+            skip();
+        }
+
+        //last card played is now null, so we don't force everyone to draw
+        lastCardPlayed = null;
+
+        //player plays their card
+        try{
+            lastCardPlayed = players.get(turn).playCard();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //if did not draw, we check if they played a reverse card, so we know what turn is next
+        if(lastCardPlayed != null){
+            if(lastCardPlayed.getNumber().equals("reverse")){
+                reverse();
+            }
+            //only updating the top card if a card was actually played
+            topCard = lastCardPlayed;
+        }
+    }
+
+    /**
+     * Reverses the order of turns
+     */
+    public void reverse(){
+        if(reversed){
+            reversed =  false;
+        }else{
+            reversed = true;
+        }
+    }
+
+    /**
+     * A player has had their turn skipped.
+     */
+    public void skip(){
+        if(reversed){
+            turn--;
+        }else{
+            turn++;
+        }
+    }
+
+    /**
+     * Determines what turn is next, based on turn order and if someone has been skipped.
+     */
+    public void nextTurn(){
+        if(reversed){
+            if(turn == 0){
+                //one larger than the player size, so that the next -- will bring the next turn to the last player in the collection
+                turn = players.size();
+            }
+            if(topCard.getNumber().equals("skip")){
+                skip();
+            }
+            turn--;
+        }else{
+            if(turn == players.size()-1){
+                //set to -1 so first player in list will have a turn after increment
+                turn = -1;
+            }
+            if(topCard.getNumber().equals("skip")){
+                skip();
+            }
+            turn++;
+        }
+    }
 
     // sub methods for gameStart method: setStartingCards, setNumberOfPlayers, setPlayerTypes, SetPlayerNames
 
@@ -171,8 +244,6 @@ public class UnoGame {
         for (String player : HumanPlayerNames) {
             players.add(new HumanPlayer(player, startingHand));
         }
-        for (String aiPlayer : AiPlayerNames) {
-            players.add(new AiPlayer(aiPlayer, startingHand));
-        }
+
     }
 }

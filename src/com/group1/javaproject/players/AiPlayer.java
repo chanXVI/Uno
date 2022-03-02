@@ -51,6 +51,7 @@ public class AiPlayer implements Player{
 
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
+            System.out.println(name + " has no playable cards and has to draw.");
             draw(1);
 
             //If a player draws, they don't play a card, and returns null to the game

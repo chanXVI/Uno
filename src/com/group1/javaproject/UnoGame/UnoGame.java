@@ -20,8 +20,8 @@ import java.util.*;
  */
 public class UnoGame implements HasTurns{
     // properties
-    ArrayList<Player> players = new ArrayList<>();
-    public static UnoCard topCard = new UnoCard("wild+4", "wild");
+    List<Player> players = new ArrayList<>();
+    public static UnoCard topCard;
     public static UnoCard lastCardPlayed = null;
     private int startingHand;
     private int numberOfPlayers;
@@ -103,19 +103,23 @@ public class UnoGame implements HasTurns{
 
         //if the last card was a draw card, the next player needs to draw and their turn is skipped
         if(lastCardPlayed != null){
-            if(lastCardPlayed.getNumber().equals("wild+4")){
+            if(lastCardPlayed.getNumber().contains("wild+4")){
                 players.get(turn).draw(4);
                 System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
                 skip();
-            }else if(lastCardPlayed.getNumber().equals("+2")){
+                return;
+            }else if(lastCardPlayed.getNumber().contains("+2")){
                 players.get(turn).draw(2);
                 System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
                 skip();
+                return;
+            }else if(lastCardPlayed.getNumber().contains("skip")){
+                skip();
+                return;
             }
+
         }
 
-        //last card played is now null, so we don't force everyone to draw
-        lastCardPlayed = null;
 
         //player plays their card
         try{
@@ -126,7 +130,7 @@ public class UnoGame implements HasTurns{
 
         //if did not draw, we check if they played a reverse card, so we know what turn is next
         if(lastCardPlayed != null){
-            if(lastCardPlayed.getNumber().equals("reverse")){
+            if(lastCardPlayed.getNumber().contains("reverse")){
                 reverse();
             }
             //only updating the top card if a card was actually played
@@ -149,11 +153,8 @@ public class UnoGame implements HasTurns{
      * A player has had their turn skipped.
      */
     public void skip(){
-        if(reversed){
-            turn--;
-        }else{
-            turn++;
-        }
+        System.out.println(players.get(turn) + " was skipped!");
+        lastCardPlayed = null;
     }
 
     /**
@@ -165,17 +166,11 @@ public class UnoGame implements HasTurns{
                 //one larger than the player size, so that the next -- will bring the next turn to the last player in the collection
                 turn = players.size();
             }
-            if(topCard.getNumber().equals("skip")){
-                skip();
-            }
             turn--;
         }else{
             if(turn == players.size()-1){
                 //set to -1 so first player in list will have a turn after increment
                 turn = -1;
-            }
-            if(topCard.getNumber().equals("skip")){
-                skip();
             }
             turn++;
         }
@@ -244,5 +239,62 @@ public class UnoGame implements HasTurns{
         for (String player : HumanPlayerNames) {
             players.add(new HumanPlayer(player, startingHand));
         }
+        for(String player : AiPlayerNames){
+            players.add(new AiPlayer(player, startingHand));
+        }
+
     }
+
+    //Methods created for testing
+
+    /**
+     * A method made for testing UnoGame
+     * @param starting the amount of cards to start with
+     */
+    public void setStartingCards(int starting){
+        this.startingHand = starting;
+    }
+
+    /**
+     * A method created for testing without using Scanners
+     * @param numberOfPlayers the number of players to create
+     */
+    public void setNumberOfPlayers(int numberOfPlayers){
+        this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public void setNumberOfHumanPlayers(int numberOfHumanPlayers){
+        this.numberOfHumanPlayers = numberOfHumanPlayers;
+        this.numberOfAiPlayers = numberOfPlayers - numberOfHumanPlayers;
+    }
+
+    public void setPlayerNames(String ... names){
+        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
+        String AiPlayerNames[] = new String[numberOfAiPlayers];
+
+        // names of the human player
+        int x = 0;
+        while (x < numberOfHumanPlayers) {
+            HumanPlayerNames[x] = "Human Player " + x;
+            x++;
+        }
+        // names of AI players
+        int y = 0;
+        while (y < numberOfAiPlayers) {
+            AiPlayerNames[y] = "AI Player - " + (y + 1);
+            y++;
+        }
+        // add total players (human and Ai) to the Arraylist;
+        for (String player : HumanPlayerNames) {
+            players.add(new HumanPlayer(player, startingHand));
+        }
+        for(String player : AiPlayerNames){
+            players.add(new AiPlayer(player, startingHand));
+        }
+    }
+
+    public List<Player> getPlayers(){
+        return players;
+    }
+
 }

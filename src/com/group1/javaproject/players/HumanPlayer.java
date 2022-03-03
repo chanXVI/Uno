@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.group1.javaproject.UnoGame.UnoGame.topCard;
@@ -49,6 +50,7 @@ public class HumanPlayer implements Player{
     @Override
     public void draw(int amount) {
         playerHand.addAll(Deck.drawCards(amount));
+        checkCardLength();
     }
 
     /**
@@ -174,6 +176,14 @@ public class HumanPlayer implements Player{
             playerHand.remove(0);
         }
         playerHand.addAll(cards);
+    }
+
+    @Override
+    public void checkCardLength(){
+        while(checkCardCount() > 20){
+            int randomPoint = new Random().nextInt(checkCardCount()) + 1;
+            playerHand.remove(randomPoint - 1);
+        }
     }
 
     public String getName(){

@@ -52,8 +52,13 @@ public class UnoGame implements HasTurns{
     public void gameStart() {
         setGameDesign();
         Collections.shuffle(players);
-        Collection<UnoCard> startCard = Deck.drawCards(1);
-        topCard = startCard.iterator().next();
+
+        //make sure the top card isn't wild at the start of the game
+        do{
+            Collection<UnoCard> startCard = Deck.drawCards(1);
+            topCard = startCard.iterator().next();
+        }while(topCard.getColor().equals("wild"));
+
         //System.out.println(topCard);
 
         //time to play the game

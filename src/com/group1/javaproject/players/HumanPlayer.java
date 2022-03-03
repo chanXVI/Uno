@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import static com.group1.javaproject.UnoGame.UnoGame.lastCardPlayed;
 import static com.group1.javaproject.UnoGame.UnoGame.topCard;
@@ -101,7 +99,7 @@ public class HumanPlayer implements Player{
         UnoCard pickedCard = playerHand.get(x);
 
         //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
-        if (isCardValid(pickedCard)){
+        if (!isCardValid(pickedCard)){
             System.out.println(pickedCard + " is not a valid card please draw"); //trying to play an invalid card
 
             InputStreamReader drawInput = new InputStreamReader(System.in);
@@ -143,6 +141,11 @@ public class HumanPlayer implements Player{
             pickedCard.setColor(choice);
         }
 
+        //We automatically say uno if we have one card
+        if(playerHand.size() == 1){
+            sayUno();
+        }
+
         return pickedCard;
     }
 
@@ -177,8 +180,6 @@ public class HumanPlayer implements Player{
         }
         playerHand.addAll(cards);
     }
-
-    @Override
     public void checkCardLength(){
         while(checkCardCount() > 20){
             int randomPoint = new Random().nextInt(checkCardCount()) + 1;

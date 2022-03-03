@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static com.group1.javaproject.UnoGame.UnoGame.topCard;
@@ -33,11 +34,11 @@ public class HumanPlayer implements Player{
 
     public HumanPlayer(String name){
         this.name = name;
-        playerHand.addAll(Deck.dealCards(10));
+//        playerHand.addAll(Deck.dealCards(10));
     }
 
     public HumanPlayer(String name, int startingHand){
-        this.name = name;
+        this(name);
         playerHand.addAll(Deck.dealCards(startingHand));
     }
 
@@ -132,7 +133,7 @@ public class HumanPlayer implements Player{
             System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
             String choice = null;
             try {
-                choice = colorReader.readLine();
+                choice = colorReader.readLine().toLowerCase();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -173,6 +174,10 @@ public class HumanPlayer implements Player{
             playerHand.remove(0);
         }
         playerHand.addAll(cards);
+    }
+
+    public String getName(){
+        return name.toUpperCase();
     }
 
     /**

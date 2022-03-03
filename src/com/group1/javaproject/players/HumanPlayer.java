@@ -65,7 +65,7 @@ public class HumanPlayer implements Player{
     public UnoCard playCard()  {
         //System.out.println(topCard);
 
-        System.out.println(topCard + " is currently on top of pile");
+        System.out.println(topCard.getColor().toUpperCase() + " " + topCard.getNumber() + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card
         int y = 1;

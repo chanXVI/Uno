@@ -52,8 +52,13 @@ public class UnoGame implements HasTurns{
     public void gameStart() {
         setGameDesign();
         Collections.shuffle(players);
-        Collection<UnoCard> startCard = Deck.drawCards(1);
-        topCard = startCard.iterator().next();
+
+        //make sure the top card isn't wild at the start of the game
+        do{
+            Collection<UnoCard> startCard = Deck.drawCards(1);
+            topCard = startCard.iterator().next();
+        }while(topCard.getColor().equals("wild"));
+
         //System.out.println(topCard);
 
         //time to play the game
@@ -83,7 +88,7 @@ public class UnoGame implements HasTurns{
      */
     public void checkCards(){
         for (Player player : players){
-            System.out.println(player + "has " + player.checkCardCount() + "cards.");
+            System.out.println(player.getName() + "has " + player.checkCardCount() + "cards.");
         }
     }
 
@@ -155,7 +160,7 @@ public class UnoGame implements HasTurns{
      * A player has had their turn skipped.
      */
     public void skip(){
-        System.out.println(players.get(turn) + " was skipped!");
+        System.out.println(players.get(turn).getName() + " was skipped!");
         lastCardPlayed = null;
     }
 
@@ -289,7 +294,7 @@ public class UnoGame implements HasTurns{
                 "================================================================================");
     }
 
-    //Methods created for testing
+    /* Methods For Testing */
 
     /**
      * A method made for testing UnoGame
@@ -337,8 +342,16 @@ public class UnoGame implements HasTurns{
         }
     }
 
+    public int getTurn(){
+        return turn;
+    }
+
     public List<Player> getPlayers(){
         return players;
+    }
+
+    public boolean isReversed(){
+        return reversed;
     }
 
 }

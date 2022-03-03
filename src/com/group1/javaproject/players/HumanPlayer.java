@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.group1.javaproject.UnoGame.UnoGame.lastCardPlayed;
 import static com.group1.javaproject.UnoGame.UnoGame.topCard;
 
 /**
@@ -98,7 +99,7 @@ public class HumanPlayer implements Player{
         UnoCard pickedCard = playerHand.get(x);
 
         //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
-        if (!isCardValid(pickedCard)){
+        if (isCardValid(pickedCard)){
             System.out.println(pickedCard + " is not a valid card please draw"); //trying to play an invalid card
 
             InputStreamReader drawInput = new InputStreamReader(System.in);
@@ -203,4 +204,6 @@ public class HumanPlayer implements Player{
                 "name='" + name + '\'' +
                 '}';
     }
+
+
 }

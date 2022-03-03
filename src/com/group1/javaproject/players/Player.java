@@ -47,10 +47,12 @@ public interface Player {
         //A more readable variable name
         UnoCard topCard = UnoGame.topCard;
 
-        //If the card is a wild card, or has the same number or color as the top card, it is a valid card
-        return card.getColor().equals("wild") || card.getColor().equals(topCard.getColor()) || card.getNumber().equals(topCard.getNumber());
+        //the index the number is stored in for each UnoCard after being stylized
+        int numberIndex = 10;
 
-        //return false if card is not valid
+        //If the card is a wild card, or has the same number or color as the top card, it is a valid card
+        return card.getColor().equals("wild") || card.getColor().equals(topCard.getColor()) ||
+                card.getNumber().charAt(numberIndex) == topCard.getNumber().charAt(numberIndex); //char is primitive, and can be compared with ==
     }
 
     /**

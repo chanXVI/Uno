@@ -100,8 +100,6 @@ public class Deck {
         deck.add(new UnoCard(BACKGROUND_COLOR_GREEN + BLACK_LETTERS +"+2" + ANSI_RESET, "wild"));
         deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
         deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
-        deck.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "wild+4" + ANSI_RESET, "wild"));
         deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS + "skip" + ANSI_RESET, "blue"));
         deck.add(new UnoCard( BACKGROUND_COLOR_RED + BLACK_LETTERS + "skip" + ANSI_RESET, "red"));
         deck.add(new UnoCard(BACKGROUND_COLOR_YELLOW + BLACK_LETTERS + "skip" + ANSI_RESET, "yellow"));

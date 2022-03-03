@@ -95,7 +95,7 @@ public class UnoGame implements HasTurns{
         System.out.println("============================");
 
         for (Player player : players){
-            System.out.print("|" + player.getName() + " has " + player.checkCardCount() + " cards. ");
+            System.out.print("|" + player.getName() + " has " + player.checkCardCount() + " cards");
         }
 
         System.out.println("|");
@@ -366,6 +366,10 @@ public class UnoGame implements HasTurns{
         return turn;
     }
 
+    public void setTurn(int turn){
+        this.turn = turn;
+    }
+
     /**
      * Returns the List of players in this game
      * @return Players in this game
@@ -375,7 +379,7 @@ public class UnoGame implements HasTurns{
     }
 
 
-    private UnoGame(){};
+    private UnoGame(){}
 
     public static UnoGame getInstance(){
         return UnoGameHolder.instance;

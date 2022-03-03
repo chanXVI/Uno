@@ -140,6 +140,11 @@ public class HumanPlayer implements Player{
             pickedCard.setColor(choice);
         }
 
+        //We automatically say uno if we have one card
+        if(playerHand.size() == 1){
+            sayUno();
+        }
+
         return pickedCard;
     }
 

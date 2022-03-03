@@ -90,7 +90,7 @@ public class HumanPlayer implements Player{
         //if the number 'x' is larger than size of player hand. Show message and try again
 
         if (x > playerHand.size()){
-            System.out.println(x + " SLOT EMPTY. Please pick playable card");
+            System.out.println(x + " SLOT EMPTY. Please pick a playable card");
             playCard();
         }
 
@@ -126,7 +126,7 @@ public class HumanPlayer implements Player{
             playerHand.remove(x); //remove from hand
         }
 
-        //if wild card is played player is prompted to input color
+        //if wild card is played player is prompted to input color of their choosing to change the color of the top card
         if (pickedCard.getColor().equalsIgnoreCase("wild")){
             InputStreamReader colorInput = new InputStreamReader(System.in);
             BufferedReader colorReader = new BufferedReader(colorInput);
@@ -198,9 +198,7 @@ public class HumanPlayer implements Player{
      */
     @Override
     public String toString() {
-        return "HumanPlayer{" +
-                "name='" + name + '\'' +
-                '}';
+        return "HUMAN PLAYER " + getName();
     }
 
 

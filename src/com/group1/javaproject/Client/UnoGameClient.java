@@ -22,9 +22,10 @@ public class UnoGameClient {
             game1.gameStart();
         } else {
             // using System.in
-            UnoGame game1 = new UnoGame();
+            UnoGame game1 = UnoGame.getInstance();
             game1.setRules();
             game1.gameStart();
         }
     }
+
 }

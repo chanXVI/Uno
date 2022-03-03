@@ -14,7 +14,7 @@ public class UnoGameTest {
     String BACKGROUND_COLOR_WHITE = "\u001B[47m";
     String ANSI_RESET = "\u001B[0m";
 
-    UnoGame game = new UnoGame();
+    UnoGame game = UnoGame.getInstance();
     List<Player> players;
     @Before
     public void innit(){

@@ -127,4 +127,9 @@ public class UnoGameTest {
         //game should no longer be reversed after another reverse card is played.
         assertFalse(game.isReversed());
     }
+
+    @Test
+    public void testSingleton() {
+        assertSame(UnoGame.getInstance(), UnoGame.getInstance());
+    }
 }

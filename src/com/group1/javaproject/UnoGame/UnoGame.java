@@ -289,7 +289,7 @@ public class UnoGame implements HasTurns{
                 "================================================================================");
     }
 
-    //Methods created for testing
+    /* Methods For Testing */
 
     /**
      * A method made for testing UnoGame
@@ -335,6 +335,10 @@ public class UnoGame implements HasTurns{
         for(String player : AiPlayerNames){
             players.add(new AiPlayer(player, startingHand));
         }
+    }
+
+    public int getTurn(){
+        return turn;
     }
 
     public List<Player> getPlayers(){

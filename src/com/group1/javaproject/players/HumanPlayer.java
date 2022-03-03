@@ -88,10 +88,15 @@ public class HumanPlayer implements Player{
         int x = Integer.parseInt(card) - 1;
 
         //if the number 'x' is larger than size of player hand. Show message and try again
-
-        if (x > playerHand.size()){
-            System.out.println(x + " SLOT EMPTY. Please pick a playable card");
-            playCard();
+        while(x >= playerHand.size()){
+            System.out.println(x + " SLOT EMPTY. Please pick playable card");
+            System.out.println("What card does " + name +" want to play?");
+            try {
+                card = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            x = Integer.parseInt(card) - 1;
         }
 
         //getting selected card from hand

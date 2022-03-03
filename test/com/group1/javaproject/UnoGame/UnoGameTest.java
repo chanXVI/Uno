@@ -15,12 +15,10 @@ public class UnoGameTest {
     static String BACKGROUND_COLOR_WHITE = "\u001B[47m";
     static String ANSI_RESET = "\u001B[0m";
 
-
     @BeforeClass
     public static void innit(){
 
         UnoGame game = UnoGame.getInstance();
-
 
         game.setStartingCards(5);
         game.setNumberOfPlayers(5);

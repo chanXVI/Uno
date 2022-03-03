@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  */
 public class AiPlayer implements Player{
     private final String name;
-    //private final boolean isHuman = false; //not sure if we need this variable at the moment
     List<UnoCard> playerHand = new ArrayList<>();
 
     /**

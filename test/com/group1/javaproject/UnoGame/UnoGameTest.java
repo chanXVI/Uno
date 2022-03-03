@@ -3,6 +3,7 @@ package com.group1.javaproject.UnoGame;
 import com.group1.javaproject.deck.UnoCard;
 import com.group1.javaproject.players.Player;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +11,23 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class UnoGameTest {
-    String BLACK_LETTERS = "\u001B[30m";
-    String BACKGROUND_COLOR_WHITE = "\u001B[47m";
-    String ANSI_RESET = "\u001B[0m";
+    static String BLACK_LETTERS = "\u001B[30m";
+    static String BACKGROUND_COLOR_WHITE = "\u001B[47m";
+    static String ANSI_RESET = "\u001B[0m";
 
-    UnoGame game = new UnoGame();
-    List<Player> players;
-    @Before
-    public void innit(){
+
+    @BeforeClass
+    public static void innit(){
+
+        UnoGame game = UnoGame.getInstance();
+
 
         game.setStartingCards(5);
         game.setNumberOfPlayers(5);
         game.setNumberOfHumanPlayers(0);
         game.setPlayerNames(""); //Using parameter to avoid prompts
         //List of players to access from tests
+        List<Player> players;
         players = game.getPlayers();
 
         //We need to know what the top card is. Set to wild +4 to test that the first player doesn't draw right away
@@ -32,6 +36,8 @@ public class UnoGameTest {
 
     @Test
     public void testTurns(){
+        UnoGame game = UnoGame.getInstance();
+        List<Player> players = game.getPlayers();
         //turns should go in order
         for(int i = 0; i < players.size(); i++){
             assertEquals(game.getTurn(), i);
@@ -56,7 +62,8 @@ public class UnoGameTest {
 
     @Test
     public void testDraw(){
-
+        UnoGame game = UnoGame.getInstance();
+        List<Player> players = game.getPlayers();
         for(int i = 0; i < 3; i++){
             game.checkCards();
             game.startTurn();
@@ -68,6 +75,8 @@ public class UnoGameTest {
 
     @Test
     public void testSkip(){
+        UnoGame game = UnoGame.getInstance();
+        List<Player> players = game.getPlayers();
         List<UnoCard> skip = new ArrayList<>();
         skip.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "skip" + ANSI_RESET, "red"));
         skip.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "skip" + ANSI_RESET, "red"));
@@ -78,6 +87,12 @@ public class UnoGameTest {
         }
 
         UnoGame.topCard = new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS +"3" + ANSI_RESET, "red");
+
+        game.setTurn(0);
+
+        if(game.isReversed()){
+            game.reverse();
+        }
 
         game.startTurn();
         assertTrue(UnoGame.topCard.getNumber().contains("skip"));
@@ -91,6 +106,8 @@ public class UnoGameTest {
 
     @Test
     public void testReverse(){
+        UnoGame game = UnoGame.getInstance();
+        List<Player> players = game.getPlayers();
         List<UnoCard> reverse = new ArrayList<>();
         reverse.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "reverse" + ANSI_RESET, "red"));
         reverse.add(new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS + "reverse" + ANSI_RESET, "red"));
@@ -101,6 +118,8 @@ public class UnoGameTest {
         }
 
         UnoGame.topCard = new UnoCard(BACKGROUND_COLOR_WHITE + BLACK_LETTERS +"3" + ANSI_RESET, "red");
+
+        game.setTurn(0);
 
         game.startTurn();
         //game should be reversed after a reverse card is played

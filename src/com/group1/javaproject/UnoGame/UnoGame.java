@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class UnoGame implements HasTurns{
     // properties
-    List<Player> players = new ArrayList<>();
+    public List<Player> players = new ArrayList<>();
     public static UnoCard topCard;
     public static UnoCard lastCardPlayed = null;
     private int startingHand;
@@ -52,6 +52,11 @@ public class UnoGame implements HasTurns{
     public void gameStart() {
         setGameDesign();
         Collections.shuffle(players);
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
 
         //make sure the top card isn't wild at the start of the game
         do{
@@ -76,7 +81,7 @@ public class UnoGame implements HasTurns{
         boolean won = false;
         for(Player player : players)
             if (player.checkCardCount() == 0){
-            System.out.println(player + " has won the game!!!!!!!!!!!!!!!");
+            System.out.println(player.getName() + " has won the game!!!!!!!!!!!!!!!");
             won = true;
         }
         return won;
@@ -87,17 +92,13 @@ public class UnoGame implements HasTurns{
      * Checks the number of cards each player has
      */
     public void checkCards(){
-        for (Player player : players){
-            System.out.println(player.getName() + "has " + player.checkCardCount() + "cards.");
-        }
-    }
+        System.out.println("============================");
 
-    /**
-     * Creates each player for this game of Uno!
-     * Note: may not be needed, depending on implementation
-     */
-    public void createPlayers(Player player){
-        players.add(player);
+        for (Player player : players){
+            System.out.print("|" + player.getName() + " has " + player.checkCardCount() + " cards");
+        }
+
+        System.out.println("|");
     }
 
     //turn methods: subject to change for now, just testing implementation
@@ -106,7 +107,12 @@ public class UnoGame implements HasTurns{
      * The start of a new turn.
      */
     public void startTurn(){
-
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        checkCards();
         //if the last card was a draw card, the next player needs to draw and their turn is skipped
         if(lastCardPlayed != null){
             if(lastCardPlayed.getNumber().contains("wild+4")){
@@ -143,17 +149,18 @@ public class UnoGame implements HasTurns{
             //only updating the top card if a card was actually played
             topCard = lastCardPlayed;
         }
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     /**
      * Reverses the order of turns
      */
     public void reverse(){
-        if(reversed){
-            reversed =  false;
-        }else{
-            reversed = true;
-        }
+        reversed = !reversed;
     }
 
     /**
@@ -226,8 +233,8 @@ public class UnoGame implements HasTurns{
      * Iterates through each human player and prompts for a name, and automatically fills the AI names
      */
     public void setPlayerNames() {
-        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
-        String AiPlayerNames[] = new String[numberOfAiPlayers];
+        String[] HumanPlayerNames = new String[numberOfHumanPlayers];
+        String[] AiPlayerNames = new String[numberOfAiPlayers];
 
         // names of the human player
         int x = 0;
@@ -312,19 +319,28 @@ public class UnoGame implements HasTurns{
         this.numberOfPlayers = numberOfPlayers;
     }
 
+    /**
+     * Method created for testing purposes. Sets the amount of human and Ai players in this game
+     * @param numberOfHumanPlayers the number of human players
+     */
     public void setNumberOfHumanPlayers(int numberOfHumanPlayers){
         this.numberOfHumanPlayers = numberOfHumanPlayers;
         this.numberOfAiPlayers = numberOfPlayers - numberOfHumanPlayers;
     }
 
-    public void setPlayerNames(String ... names){
-        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
-        String AiPlayerNames[] = new String[numberOfAiPlayers];
+    /**
+     * Method created for testing. Creates human players with a given name,
+     * and Ai players with ordered names.
+     * @param name Names of the human players. All players will share this name
+     */
+    public void setPlayerNames(String name){
+        String[] HumanPlayerNames = new String[numberOfHumanPlayers];
+        String[] AiPlayerNames = new String[numberOfAiPlayers];
 
         // names of the human player
         int x = 0;
         while (x < numberOfHumanPlayers) {
-            HumanPlayerNames[x] = "Human Player " + x;
+            HumanPlayerNames[x] = "Human Player " + name + x;
             x++;
         }
         // names of AI players
@@ -342,16 +358,28 @@ public class UnoGame implements HasTurns{
         }
     }
 
+    /**
+     * Returns the current turn number
+     * @return Turn number (0 - players.size() - 1)
+     */
     public int getTurn(){
         return turn;
     }
 
+    public void setTurn(int turn){
+        this.turn = turn;
+    }
+
+    /**
+     * Returns the List of players in this game
+     * @return Players in this game
+     */
     public List<Player> getPlayers(){
         return players;
     }
 
 
-    private UnoGame(){};
+    private UnoGame(){}
 
     public static UnoGame getInstance(){
         return UnoGameHolder.instance;
@@ -362,9 +390,13 @@ public class UnoGame implements HasTurns{
         private static UnoGame instance = new UnoGame();
     }
 
+    /**
+     * Returns a true or false based on if the turn order is reversed or not
+     * @return true if reversed turn order, false if standard
+     */
     public boolean isReversed(){
         return reversed;
 
+        }
     }
 
-}

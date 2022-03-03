@@ -13,6 +13,13 @@ public class UnoCard {
     String number;
     String color;
     // constructors
+
+    /**
+     * Constructor for an UnoCard
+     * @param number Number on the card. Must be formatted such as follows:
+     *               ANSI background color + ANSI letter color + number + ANSI reset
+     * @param color Color of the card to be created
+     */
     public UnoCard(String number, String color){
         setNumber(number);
         setColor(color);
@@ -50,6 +57,6 @@ public class UnoCard {
     // toString
     @Override
     public String toString(){
-        return "Uno Card: "+getColor() + " " + getNumber();
+        return "Uno Card: "+/*getColor() + " "*/ getNumber();
     }
 }

@@ -107,7 +107,6 @@ public class UnoGame implements HasTurns{
             if(lastCardPlayed.getNumber().contains("wild+4")){
                 players.get(turn).draw(4);
                 System.out.println(players.get(turn).getName() + " has to draw 4 and their turn is skipped.");
-
                 skip();
                 return;
             }else if(lastCardPlayed.getNumber().contains("+2")){
@@ -121,6 +120,7 @@ public class UnoGame implements HasTurns{
             }
 
         }
+
 
 
         //player plays their card

@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.group1.javaproject.UnoGame.UnoGame.lastCardPlayed;
@@ -33,11 +35,11 @@ public class HumanPlayer implements Player{
 
     public HumanPlayer(String name){
         this.name = name;
-        playerHand.addAll(Deck.dealCards(10));
+//        playerHand.addAll(Deck.dealCards(10));
     }
 
     public HumanPlayer(String name, int startingHand){
-        this.name = name;
+        this(name);
         playerHand.addAll(Deck.dealCards(startingHand));
     }
 
@@ -48,6 +50,7 @@ public class HumanPlayer implements Player{
     @Override
     public void draw(int amount) {
         playerHand.addAll(Deck.drawCards(amount));
+        checkCardLength();
     }
 
     /**
@@ -62,7 +65,7 @@ public class HumanPlayer implements Player{
     public UnoCard playCard()  {
         //System.out.println(topCard);
 
-        System.out.println(topCard + " is currently on top of pile");
+        System.out.println(topCard.getColor().toUpperCase() + " " + topCard.getNumber() + " is currently on top of pile");
         System.out.println("============================");
         //see hand before picking card
         int y = 1;
@@ -132,7 +135,7 @@ public class HumanPlayer implements Player{
             System.out.println(name + " please pick a color: RED, YELLOW, BLUE, GREEN");
             String choice = null;
             try {
-                choice = colorReader.readLine();
+                choice = colorReader.readLine().toLowerCase();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -173,6 +176,18 @@ public class HumanPlayer implements Player{
             playerHand.remove(0);
         }
         playerHand.addAll(cards);
+    }
+
+    @Override
+    public void checkCardLength(){
+        while(checkCardCount() > 20){
+            int randomPoint = new Random().nextInt(checkCardCount()) + 1;
+            playerHand.remove(randomPoint - 1);
+        }
+    }
+
+    public String getName(){
+        return name.toUpperCase();
     }
 
     /**

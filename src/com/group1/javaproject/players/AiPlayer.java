@@ -5,6 +5,7 @@ import com.group1.javaproject.deck.UnoCard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -37,6 +38,7 @@ public class AiPlayer implements Player{
     @Override
     public void draw(int amount) {
         playerHand.addAll(Deck.drawCards(amount));
+       checkCardLength();
     }
 
     /**
@@ -48,6 +50,15 @@ public class AiPlayer implements Player{
     public UnoCard playCard() {
         //Gather a list of valid cards from the current hand
         List<UnoCard> validCards = playerHand.stream().filter(this::isCardValid).collect(Collectors.toList());
+
+        //AI player waits for a second before either drawing or playing a card
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("============================");
 
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
@@ -123,6 +134,16 @@ public class AiPlayer implements Player{
         playerHand.addAll(cards);
     }
 
+    @Override
+    public void checkCardLength(){
+        while(checkCardCount() > 20){
+            int randomPoint = new Random().nextInt(checkCardCount()) + 1;
+            playerHand.remove(randomPoint - 1);
+        }
+    }
+    public String getName(){
+        return name.toUpperCase();
+    }
     /**
      * The information on this player in a String format
      *

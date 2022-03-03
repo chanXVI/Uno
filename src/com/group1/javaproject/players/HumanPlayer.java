@@ -89,7 +89,7 @@ public class HumanPlayer implements Player{
 
         //if the number 'x' is larger than size of player hand. Show message and try again
         while(x >= playerHand.size()){
-            System.out.println(x + " SLOT EMPTY. Please pick playable card");
+            System.out.println((x + 1) + " SLOT EMPTY. Please pick playable card");
             System.out.println("What card does " + name +" want to play?");
             try {
                 card = reader.readLine();

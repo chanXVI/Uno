@@ -350,9 +350,6 @@ public class UnoGame implements HasTurns{
         return players;
     }
 
-    public boolean isReversed(){
-        return reversed;
-    }
 
     private UnoGame(){};
 
@@ -363,6 +360,9 @@ public class UnoGame implements HasTurns{
     private static class UnoGameHolder {
 
         private static UnoGame instance = new UnoGame();
+
+    public boolean isReversed(){
+        return reversed;
 
     }
 

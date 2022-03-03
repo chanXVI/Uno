@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class AiPlayer implements Player{
     private final String name;
-    private final boolean isHuman = false;
+    //private final boolean isHuman = false; //not sure if we need this variable at the moment
     List<UnoCard> playerHand = new ArrayList<>();
 
     /**
@@ -47,10 +47,11 @@ public class AiPlayer implements Player{
     @Override
     public UnoCard playCard() {
         //Gather a list of valid cards from the current hand
-        List<UnoCard> validCards = playerHand.stream().filter(card -> isCardValid(card)).collect(Collectors.toList());
+        List<UnoCard> validCards = playerHand.stream().filter(this::isCardValid).collect(Collectors.toList());
 
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
+            System.out.println(name + " has no playable cards and has to draw.");
             draw(1);
 
             //If a player draws, they don't play a card, and returns null to the game
@@ -59,6 +60,7 @@ public class AiPlayer implements Player{
 
         //create new reference for the card for readability
         UnoCard card = validCards.get(0);
+        System.out.println(name + " played " + card);
 
         //card is removed once used
         playerHand.remove(card);
@@ -70,8 +72,11 @@ public class AiPlayer implements Player{
 
         //if the chosen card is a wild card, pick a random color.
         if(card.getColor().equals("wild")){
+
             //This Ai doesn't care if they have that color in their hand or not
             card.setColor(getWildColor());
+
+            System.out.println(name + " changed the color to " + card.getColor());
         }
 
         return card;
@@ -106,14 +111,14 @@ public class AiPlayer implements Player{
 
     /**
      * Set the current to a provided set of cards. Method created for testing purposes
-     * @param cards
+     * @param cards the cards to replace the current hand with
      */
     public void setHand(List<UnoCard> cards) {
         //playerHand is final, can not use = to change contents to that of another collection
         //must first remove each UnoCard from playerHand, then add each new card to the List
         int size = playerHand.size();
-        for (int i = 0; i < size; i++) {
-            playerHand.remove(0);
+        if (size > 0) {
+            playerHand.subList(0, size).clear();
         }
         playerHand.addAll(cards);
     }

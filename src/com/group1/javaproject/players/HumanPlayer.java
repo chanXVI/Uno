@@ -177,8 +177,6 @@ public class HumanPlayer implements Player{
         }
         playerHand.addAll(cards);
     }
-
-    @Override
     public void checkCardLength(){
         while(checkCardCount() > 20){
             int randomPoint = new Random().nextInt(checkCardCount()) + 1;

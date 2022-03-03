@@ -92,14 +92,6 @@ public class UnoGame implements HasTurns{
         }
     }
 
-    /**
-     * Creates each player for this game of Uno!
-     * Note: may not be needed, depending on implementation
-     */
-    public void createPlayers(Player player){
-        players.add(player);
-    }
-
     //turn methods: subject to change for now, just testing implementation
 
     /**
@@ -149,11 +141,7 @@ public class UnoGame implements HasTurns{
      * Reverses the order of turns
      */
     public void reverse(){
-        if(reversed){
-            reversed =  false;
-        }else{
-            reversed = true;
-        }
+        reversed = !reversed;
     }
 
     /**
@@ -226,8 +214,8 @@ public class UnoGame implements HasTurns{
      * Iterates through each human player and prompts for a name, and automatically fills the AI names
      */
     public void setPlayerNames() {
-        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
-        String AiPlayerNames[] = new String[numberOfAiPlayers];
+        String[] HumanPlayerNames = new String[numberOfHumanPlayers];
+        String[] AiPlayerNames = new String[numberOfAiPlayers];
 
         // names of the human player
         int x = 0;
@@ -317,14 +305,14 @@ public class UnoGame implements HasTurns{
         this.numberOfAiPlayers = numberOfPlayers - numberOfHumanPlayers;
     }
 
-    public void setPlayerNames(String ... names){
-        String HumanPlayerNames[] = new String[numberOfHumanPlayers];
-        String AiPlayerNames[] = new String[numberOfAiPlayers];
+    public void setPlayerNames(String name){
+        String[] HumanPlayerNames = new String[numberOfHumanPlayers];
+        String[] AiPlayerNames = new String[numberOfAiPlayers];
 
         // names of the human player
         int x = 0;
         while (x < numberOfHumanPlayers) {
-            HumanPlayerNames[x] = "Human Player " + x;
+            HumanPlayerNames[x] = "Human Player " + name + x;
             x++;
         }
         // names of AI players

@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import static com.group1.javaproject.UnoGame.UnoGame.topCard;
 
@@ -25,7 +23,6 @@ import static com.group1.javaproject.UnoGame.UnoGame.topCard;
 public class HumanPlayer implements Player{
 
     private final String name;
-    private final boolean isHuman = true;
     List<UnoCard> playerHand = new ArrayList<>();
 
     /**
@@ -199,7 +196,6 @@ public class HumanPlayer implements Player{
     public String toString() {
         return "HumanPlayer{" +
                 "name='" + name + '\'' +
-                ", isHuman=" + isHuman +
                 '}';
     }
 }

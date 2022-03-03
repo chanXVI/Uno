@@ -88,7 +88,7 @@ public class UnoGame implements HasTurns{
      */
     public void checkCards(){
         for (Player player : players){
-            System.out.println(player + "has " + player.checkCardCount() + "cards.");
+            System.out.println(player.getName() + "has " + player.checkCardCount() + "cards.");
         }
     }
 
@@ -160,7 +160,7 @@ public class UnoGame implements HasTurns{
      * A player has had their turn skipped.
      */
     public void skip(){
-        System.out.println(players.get(turn) + " was skipped!");
+        System.out.println(players.get(turn).getName() + " was skipped!");
         lastCardPlayed = null;
     }
 

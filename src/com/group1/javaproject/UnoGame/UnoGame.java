@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class UnoGame implements HasTurns{
     // properties
-    List<Player> players = new ArrayList<>();
+    public List<Player> players = new ArrayList<>();
     public static UnoCard topCard;
     public static UnoCard lastCardPlayed = null;
     private int startingHand;
@@ -397,6 +397,6 @@ public class UnoGame implements HasTurns{
     public boolean isReversed(){
         return reversed;
 
+        }
     }
 
-}

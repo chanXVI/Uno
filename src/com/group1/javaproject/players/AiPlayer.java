@@ -123,6 +123,9 @@ public class AiPlayer implements Player{
         playerHand.addAll(cards);
     }
 
+    public String getName(){
+        return name.toUpperCase();
+    }
     /**
      * The information on this player in a String format
      *

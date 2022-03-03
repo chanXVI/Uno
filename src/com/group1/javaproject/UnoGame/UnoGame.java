@@ -106,12 +106,13 @@ public class UnoGame implements HasTurns{
         if(lastCardPlayed != null){
             if(lastCardPlayed.getNumber().contains("wild+4")){
                 players.get(turn).draw(4);
-                System.out.println(players.get(turn) + " has to draw 4 and their turn is skipped.");
+                System.out.println(players.get(turn).getName() + " has to draw 4 and their turn is skipped.");
+
                 skip();
                 return;
             }else if(lastCardPlayed.getNumber().contains("+2")){
                 players.get(turn).draw(2);
-                System.out.println(players.get(turn) + " has to draw 2 and their turn is skipped.");
+                System.out.println(players.get(turn).getName() + " has to draw 2 and their turn is skipped.");
                 skip();
                 return;
             }else if(lastCardPlayed.getNumber().contains("skip")){
@@ -233,7 +234,7 @@ public class UnoGame implements HasTurns{
         // names of AI players
         int y = 0;
         while (y < numberOfAiPlayers) {
-            AiPlayerNames[y] = "AI Player - " + (y + 1);
+            AiPlayerNames[y] = "AI Player- " + (y + 1) + ": ";
             y++;
         }
         // add total players (human and Ai) to the Arraylist;
@@ -284,7 +285,8 @@ public class UnoGame implements HasTurns{
                 "5555555555555G#&B~.JPPPJ~PPPBG!BP..^^^^^7#^ ~555GP.::YP.   :#B555555B&GPPGPG~  .\n" +
                 "55555555555555G#&#?.7PG?!PPG~: 7&7 ^^^^^7#^ J5555GP?7P^    P&P5555P?B#BBGGG?    \n" +
                 "555555555555555PB&&5.~PJ~PPBY. .PB..:^^^7#^:Y555555P#7    .!J5PGG57 .:~7JJ7. .~Y\n" +
-                "5555555555555555PB#&G:^J^5PP#G: !&? ^::^7#~:Y555555P5 :.      .:^:         .7P#&");
+                "5555555555555555PB#&G:^J^5PP#G: !&? ^::^7#~:Y555555P5 :.      .:^:         .7P#&\n\n" +
+                "================================================================================");
     }
 
     //Methods created for testing

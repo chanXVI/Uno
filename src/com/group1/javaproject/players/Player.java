@@ -58,4 +58,6 @@ public interface Player {
      * @param cards The cards to replace the current hand
      */
     void setHand(List<UnoCard> cards);
+
+    String getName();
 }

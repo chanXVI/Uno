@@ -42,7 +42,8 @@ public class HumanPlayer implements Player{
     }
 
     /**
-     * Draws a number of cards from the deck to add to the player hand
+     * Draws a number of cards from the deck to add to the player hand.
+     * Checks the total amount of cards in player hand after drawing.
      * @param amount Amount of cards to be added to the player hand
      */
     @Override
@@ -61,20 +62,18 @@ public class HumanPlayer implements Player{
      */
     @Override
     public UnoCard playCard()  {
-        //System.out.println(topCard);
-
+        //
         System.out.println(topCard.getColor().toUpperCase() + " " + topCard.getNumber() + " is currently on top of pile");
         System.out.println("============================");
+
         //see hand before picking card
         int y = 1;
         for(UnoCard card : playerHand){
             System.out.println(y + "." + card);
             y++;
         }
-//        System.out.println(playerHand);
 
-
-        //choice card that you want to play
+        //choose card that you want to play
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
         System.out.println("What card does " + name +" want to play?");
@@ -100,7 +99,7 @@ public class HumanPlayer implements Player{
             x = Integer.parseInt(card) - 1;
         }
 
-        //getting card that you picked from list
+        //getting selected card from hand
         UnoCard pickedCard = playerHand.get(x);
 
         //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
@@ -132,6 +131,7 @@ public class HumanPlayer implements Player{
             playerHand.remove(x); //remove from hand
         }
 
+        //if wild card is played player is prompted to input color of their choosing to change the color of the top card
         if (pickedCard.getColor().equalsIgnoreCase("wild")){
             InputStreamReader colorInput = new InputStreamReader(System.in);
             BufferedReader colorReader = new BufferedReader(colorInput);
@@ -203,9 +203,7 @@ public class HumanPlayer implements Player{
      */
     @Override
     public String toString() {
-        return "HumanPlayer{" +
-                "name='" + name + '\'' +
-                '}';
+        return "HUMAN PLAYER " + getName();
     }
 
 

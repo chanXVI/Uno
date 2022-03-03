@@ -10,7 +10,7 @@ public class UnoGameClient {
         if (args.length > 0) {
             int aiPlayerVal = 1;
             int startingCardsInHand = Integer.parseInt(args[0]);
-            UnoGame game1 = new UnoGame();
+            UnoGame game1 = UnoGame.getInstance();
             for (int num = 1; num < args.length; num++) {
                 if (args[num].equalsIgnoreCase("Ai")) {
                     game1.players.add(new AiPlayer("AI Player - " + aiPlayerVal, startingCardsInHand));

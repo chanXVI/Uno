@@ -350,4 +350,8 @@ public class UnoGame implements HasTurns{
         return players;
     }
 
+    public boolean isReversed(){
+        return reversed;
+    }
+
 }

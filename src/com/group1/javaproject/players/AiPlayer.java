@@ -51,6 +51,15 @@ public class AiPlayer implements Player{
         //Gather a list of valid cards from the current hand
         List<UnoCard> validCards = playerHand.stream().filter(this::isCardValid).collect(Collectors.toList());
 
+        //AI player waits for a second before either drawing or playing a card
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("============================");
+
         if(validCards.size() == 0){
             //Must draw a card if no valid cards are present
             System.out.println(name + " has no playable cards and has to draw.");

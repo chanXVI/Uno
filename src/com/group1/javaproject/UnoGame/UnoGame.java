@@ -52,6 +52,11 @@ public class UnoGame implements HasTurns{
     public void gameStart() {
         setGameDesign();
         Collections.shuffle(players);
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
 
         //make sure the top card isn't wild at the start of the game
         do{
@@ -90,10 +95,10 @@ public class UnoGame implements HasTurns{
         System.out.println("============================");
 
         for (Player player : players){
-            System.out.print(player.getName() + " has " + player.checkCardCount() + " cards. ");
+            System.out.print("|" + player.getName() + " has " + player.checkCardCount() + " cards. ");
         }
 
-        System.out.println("\n============================");
+        System.out.println("|");
     }
 
     //turn methods: subject to change for now, just testing implementation
@@ -102,6 +107,11 @@ public class UnoGame implements HasTurns{
      * The start of a new turn.
      */
     public void startTurn(){
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
         checkCards();
         //if the last card was a draw card, the next player needs to draw and their turn is skipped
         if(lastCardPlayed != null){
@@ -138,6 +148,11 @@ public class UnoGame implements HasTurns{
             }
             //only updating the top card if a card was actually played
             topCard = lastCardPlayed;
+        }
+        try{
+            Thread.sleep(500);
+        }catch(InterruptedException e){
+            e.printStackTrace();
         }
     }
 

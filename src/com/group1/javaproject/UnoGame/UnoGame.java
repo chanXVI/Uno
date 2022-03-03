@@ -339,4 +339,16 @@ public class UnoGame implements HasTurns{
         return players;
     }
 
+    private UnoGame(){};
+
+    public static UnoGame getInstance(){
+        return UnoGameHolder.instance;
+    }
+
+    private static class UnoGameHolder {
+
+        private static UnoGame instance = new UnoGame();
+
+    }
+
 }

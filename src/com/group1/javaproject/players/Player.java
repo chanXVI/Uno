@@ -61,5 +61,7 @@ public interface Player {
      */
     void setHand(List<UnoCard> cards);
 
+    public void checkCardLength();
     String getName();
+
 }

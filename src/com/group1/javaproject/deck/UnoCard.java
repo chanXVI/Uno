@@ -9,10 +9,8 @@ package com.group1.javaproject.deck;
  */
 public class UnoCard {
 
-    // properties
     String number;
     String color;
-    // constructors
 
     /**
      * Constructor for an UnoCard
@@ -24,7 +22,7 @@ public class UnoCard {
         setNumber(number);
         setColor(color);
     }
-    // methods
+
 
     /**
      * @return the number on this card as a String
@@ -57,6 +55,6 @@ public class UnoCard {
     // toString
     @Override
     public String toString(){
-        return "Uno Card: "+/*getColor() + " "*/ getNumber();
+        return "Uno Card: "+ getNumber();
     }
 }

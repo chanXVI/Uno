@@ -11,9 +11,11 @@ import java.util.Collection;
  * @author Sanil & Trevor
  */
 public class Deck {
-    // properties
+
     private static final ArrayList<UnoCard> deck = new ArrayList<>();
-   //
+    /**
+     * Sets respective background colors for each type of card.
+     */
     public static final String BLACK_LETTERS = "\u001B[30m";
     public static final String BACKGROUND_COLOR_BLUE = "\u001B[44m";
     public static final String BACKGROUND_COLOR_RED = "\u001B[41m";
@@ -22,8 +24,6 @@ public class Deck {
     public static final String BACKGROUND_COLOR_WHITE = "\u001B[47m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    // constructors
-    // methods
 
     /**
      * Deals the starting hand to a player
@@ -54,9 +54,10 @@ public class Deck {
         }
         return addToHand;
     }
-    //toString
-    // deck array list
 
+    /**
+     * Creates each card that will be in the deck.
+     */
     static {
         deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"1" + ANSI_RESET, "blue"));
         deck.add(new UnoCard(BACKGROUND_COLOR_BLUE + BLACK_LETTERS+"2" + ANSI_RESET, "blue"));

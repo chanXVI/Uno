@@ -257,7 +257,10 @@ public class UnoGame implements HasTurns{
             players.add(new AiPlayer(player, startingHand));
         }
     }
-        // design the console when game starts
+
+    /**
+     * Prints a "loading screen" when a new game is started.
+     */
     public void setGameDesign(){
         System.out.println("" +
                 "55555555555555555555555555555555555555555555555555555555555555555555555555555555\n" +

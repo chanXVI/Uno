@@ -6,7 +6,9 @@ import com.group1.javaproject.players.HumanPlayer;
 
 public class UnoGameClient {
     public static void main(String[] args) {
-        // using Command Parser
+        /**
+         * Uses Command Parser
+         */
         if (args.length > 0) {
             int aiPlayerVal = 1;
             int startingCardsInHand = Integer.parseInt(args[0]);
@@ -21,7 +23,9 @@ public class UnoGameClient {
             }
             game1.gameStart();
         } else {
-            // using System.in
+            /**
+             * Using System.in
+             */
             UnoGame game1 = UnoGame.getInstance();
             game1.setRules();
             game1.gameStart();

@@ -44,15 +44,22 @@ public interface Player {
      * @return true if card is valid, false if card can not be played
      */
     default boolean isCardValid(UnoCard card){
-        //A more readable variable name
+        /**
+         * Provides a more readable variable name
+         */
         UnoCard topCard = UnoGame.topCard;
 
-        //the index the number is stored in for each UnoCard after being stylized
+        /**This stores the index number for each UnoCard after being stylized.
+         *
+         */
         int numberIndex = 10;
 
-        //If the card is a wild card, or has the same number or color as the top card, it is a valid card
+        /**
+         * If the card is a wild card, or has the same number or color as the top card, it is a valid card.
+         * char is primitive and can be compared by using ==.
+         */
         return card.getColor().equals("wild") || card.getColor().equals(topCard.getColor()) ||
-                card.getNumber().charAt(numberIndex) == topCard.getNumber().charAt(numberIndex); //char is primitive, and can be compared with ==
+                card.getNumber().charAt(numberIndex) == topCard.getNumber().charAt(numberIndex);
     }
 
     /**

@@ -47,10 +47,14 @@ public class AiPlayer implements Player{
      */
     @Override
     public UnoCard playCard() {
-        //Gather a list of valid cards from the current hand
+        /**
+         * Gather a list of valid cards from the current hand.
+         */
         List<UnoCard> validCards = playerHand.stream().filter(this::isCardValid).collect(Collectors.toList());
 
-        //AI player waits for a second before either drawing or playing a card
+        /**
+         * AI player waits for a second before either drawing or playing a card
+         */
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e){
@@ -60,30 +64,45 @@ public class AiPlayer implements Player{
         System.out.println("============================");
 
         if(validCards.size() == 0){
-            //Must draw a card if no valid cards are present
+            /**
+             * Must draw a card if no valid cards are present
+             */
             System.out.println(name + " has no playable cards and has to draw.");
             draw(1);
 
-            //If a player draws, they don't play a card, and returns null to the game
+            /**
+             * If a player draws, they don't play a card, and returns null to the game
+             * @return null
+             */
             return null;
         }
 
-        //create new reference for the card for readability
+        /**
+         * Create new reference for the card for readability.
+         */
         UnoCard card = validCards.get(0);
         System.out.println(name + " played " + card);
 
-        //card is removed once used
+        /**
+         * Card is removed once used
+         */
         playerHand.remove(card);
 
-        //if the Ai has one card left, they automatically say uno
+        /**
+         * If the Ai has one card left, they automatically say uno
+         */
         if(playerHand.size() == 1){
             sayUno();
         }
 
-        //if the chosen card is a wild card, pick a random color.
+        /**
+         * If the chosen card is a wild card, pick a random color.
+         */
         if(card.getColor().equals("wild")){
 
-            //This Ai doesn't care if they have that color in their hand or not
+            /**
+             * This Ai doesn't care if they have that color in their hand or not.
+             */
             card.setColor(getWildColor());
 
             System.out.println(name + " changed the color to " + card.getColor());
@@ -124,8 +143,11 @@ public class AiPlayer implements Player{
      * @param cards the cards to replace the current hand with
      */
     public void setHand(List<UnoCard> cards) {
-        //playerHand is final, can not use = to change contents to that of another collection
-        //must first remove each UnoCard from playerHand, then add each new card to the List
+        /**
+         * playerHand is final, can not use = to change contents to that of another collection.
+         * Must first remove each UnoCard from playerHand, then add each new card to the List.
+         */
+        //
         int size = playerHand.size();
         if (size > 0) {
             playerHand.subList(0, size).clear();

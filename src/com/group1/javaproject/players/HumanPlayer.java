@@ -66,30 +66,42 @@ public class HumanPlayer implements Player{
         System.out.println(topCard.getColor().toUpperCase() + " " + topCard.getNumber() + " is currently on top of pile");
         System.out.println("============================");
 
-        //see hand before picking card
+        /**
+         * Allows player to see their hand before picking card.
+         */
         int y = 1;
         for(UnoCard card : playerHand){
             System.out.println(y + "." + card);
             y++;
         }
 
-        //choose card that you want to play
+        /**
+         * Allows user to choose card that you want to play.
+         */
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input);
         System.out.println("What card does " + name +" want to play?");
 
-        String card = null; //enter place in arraylist to get element
+        /**
+         * Enter number of arraylist to get an element.
+         */
+        String card = null;
         try {
             card = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //entered number will be changed to int
+        /**
+         * The entered number will be changed to an int.
+         */
         int x = Integer.parseInt(card) - 1;
 
-        //if the number 'x' is larger than size of player hand. Show message and try again
+        /**
+         * If the number 'x' is larger than size of player hand, a message will be shown and the player will
+         * be prompted to try again.
+         */
         while(x >= playerHand.size()){
-            System.out.println((x + 1) + " SLOT EMPTY. Please pick playable card");
+            System.out.println(x + " SLOT EMPTY. Please pick playable card");
             System.out.println("What card does " + name +" want to play?");
             try {
                 card = reader.readLine();
@@ -99,12 +111,17 @@ public class HumanPlayer implements Player{
             x = Integer.parseInt(card) - 1;
         }
 
-        //getting selected card from hand
+        /**
+         * Gets selected card from hand.
+         * If card is NOT a valid card, draw a new card and end the turn. If the chosen card IS valid, it is removed
+         * from the hand.
+         * @return null
+         */
         UnoCard pickedCard = playerHand.get(x);
 
-        //if card NOT a valid card, draw, and end turn. if card IS valid show card picked, and remove from hand
+
         if (!isCardValid(pickedCard)){
-            System.out.println(pickedCard + " is not a valid card please draw"); //trying to play an invalid card
+            System.out.println(pickedCard + " is not a valid card please draw");
 
             InputStreamReader drawInput = new InputStreamReader(System.in);
             BufferedReader drawReader = new BufferedReader(drawInput);
@@ -127,11 +144,14 @@ public class HumanPlayer implements Player{
 
             return null;
         } else{
-            System.out.println("You picked: " + pickedCard); //int x used to get UnoCard from "index x" of playerHand
-            playerHand.remove(x); //remove from hand
+            System.out.println("You picked: " + pickedCard);
+            playerHand.remove(x);
         }
 
-        //if wild card is played player is prompted to input color of their choosing to change the color of the top card
+        /**
+         * If wild card is played player is prompted to input color of
+         * their choosing to change the color of the top card.
+         */
         if (pickedCard.getColor().equalsIgnoreCase("wild")){
             InputStreamReader colorInput = new InputStreamReader(System.in);
             BufferedReader colorReader = new BufferedReader(colorInput);
@@ -146,7 +166,10 @@ public class HumanPlayer implements Player{
             pickedCard.setColor(choice);
         }
 
-        //We automatically say uno if we have one card
+        /**
+         * Player will automatically say uno if they have one card.
+         * @return pickedCard
+         */
         if(playerHand.size() == 1){
             sayUno();
         }
@@ -192,6 +215,10 @@ public class HumanPlayer implements Player{
         }
     }
 
+    /**
+     * Converts name to uppercase.
+     * @return name.toUpperCase()
+     */
     public String getName(){
         return name.toUpperCase();
     }
